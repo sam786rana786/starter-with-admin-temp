@@ -21,57 +21,36 @@
 
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="calendar.html" class=" waves-effect">
-                        <i class="ri-calendar-2-line"></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Email</span>
+                        <i class="ri-home-smile-2-fill"></i>
+                        <span>Home Page</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Inbox</a></li>
-                        <li><a href="email-read.html">Read Email</a></li>
+                        <li><a href="{{ route('banner.index') }}">Banner</a></li>
+                        <li><a href="{{ route('highlights.index') }}">Highlights</a></li>
+                        <li><a href="{{ route('school.edit') }}">School Section</a></li>
+                        <li><a href="{{ route('album.index') }}">Gallery Section</a></li>
+                        <li><a href="{{ route('vandm.index') }}">Vision & Mission Section</a></li>
+                        <li><a href="{{ route('footer.index') }}">Footer Section</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-layout-3-line"></i>
-                        <span>Layouts</span>
+                        <span>Notices & Events</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">Vertical</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-                                <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                <li><a href="layouts-boxed.html">Boxed Layout</a></li>
-                                <li><a href="layouts-preloader.html">Preloader</a></li>
-                                <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                <li><a href="layouts-hori-topbar-light.html">Topbar light</a></li>
-                                <li><a href="layouts-hori-boxed-width.html">Boxed width</a></li>
-                                <li><a href="layouts-hori-preloader.html">Preloader</a></li>
-                                <li><a href="layouts-hori-colored-header.html">Colored Header</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('notice.index') }}">List Notice</a></li>
+                        <li><a href="{{ route('notice.create') }}">Create Notices</a></li>
+                        <li><a href="{{ route('events.index') }}">List Events</a></li>
+                        <li><a href="{{ route('events.create') }}">Create Events</a></li>
                     </ul>
                 </li>
 
@@ -79,29 +58,104 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Authentication</span>
+                        <i class="ri-file-info-line"></i>
+                        <span>About Us</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="auth-login.html">Login</a></li>
-                        <li><a href="auth-register.html">Register</a></li>
-                        <li><a href="auth-recoverpw.html">Recover Password</a></li>
-                        <li><a href="auth-lock-screen.html">Lock Screen</a></li>
+                        <li><a href="{{ route('about.index') }}">About School</a></li>
+                        <li><a href="{{ route('vandm.edit', 3) }}">Principal Message</a></li>
+                        <li><a href="{{ route('employee.index') }}">Employees</a></li>
+
                     </ul>
                 </li>
-
+                <li>
+                    <a href="{{ route('important.index') }}">
+                        <i class="ri-image-add-fill"></i>
+                        Important Images
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('mandatory.index') }}" class="waves-effect">
+                        <i class="mdi mdi-file-document-multiple"></i>
+                        Mandatory Disclosure
+                    </a>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-profile-line"></i>
-                        <span>Utility</span>
+                        <span>Admission</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Starter Page</a></li>
-                        <li><a href="pages-timeline.html">Timeline</a></li>
-                        <li><a href="pages-directory.html">Directory</a></li>
-                        <li><a href="pages-invoice.html">Invoice</a></li>
-                        <li><a href="pages-404.html">Error 404</a></li>
-                        <li><a href="pages-500.html">Error 500</a></li>
+                        <li><a href="{{ route('uniform.index') }}">Fee Structure</a></li>
+                        <li><a href="{{ route('online.admission') }}">Online Admission List</a></li>
+                        <li><a href="pages-directory.html">Admission Notification</a></li>
+                        <li><a href="pages-invoice.html">Rules and Regulations</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Academics</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-starter.html">Student Daily Notice</a></li>
+                        <li><a href="pages-timeline.html">Syllabus (Upload as PDF)</a></li>
+                        <li><a href="pages-directory.html">Study Materials</a></li>
+                        <li><a href="pages-invoice.html">Result</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ route('facilities.index') }}" class="waves-effect">
+                        <i class="ri-profile-line"></i>
+                        Facilities
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Gallery</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-starter.html">Annual Day</a></li>
+                        <li><a href="pages-timeline.html">Children Day</a></li>
+                        <li><a href="pages-directory.html">Gandhi Jyanti</a></li>
+                        <li><a href="pages-invoice.html">Games and Sports</a></li>
+                        <li><a href="pages-invoice.html">Fancy Dress Competition</a></li>
+                        <li><a href="pages-invoice.html">Quiz Contest</a></li>
+                        <li><a href="pages-invoice.html">Rakhee Making Competition</a></li>
+                        <li><a href="pages-invoice.html">Drawing Competition</a></li>
+                        <li><a href="pages-invoice.html">Science Exhibition</a></li>
+                        <li><a href="pages-invoice.html">Rangoli Competition</a></li>
+                        <li><a href="pages-invoice.html">Greeting Card Making Competition</a></li>
+                        <li><a href="pages-invoice.html">Birth Anniversary Celebration</a></li>
+                        <li><a href="pages-invoice.html">Glass Painting Competition</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Achievements</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-starter.html">VPS Achivers List</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Transfer Certificates</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('tc.index') }}">TC Views</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Alumni</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-starter.html">Alumni Registration Form</a></li>
                     </ul>
                 </li>
             </ul>

@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\AdmFrm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('admin.index');
+    }
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -41,14 +47,12 @@ class AdminController extends Controller
         $data->username = $request->username;
 
 
-        if($request->file('profile_image'))
-        {
+        if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('backend/uploads/admin_images'), $filename);
-            $imageName = 'backend/uploads/admin_images/'.$filename;
-            if($data['profile_image'])
-            {
+            $imageName = 'backend/uploads/admin_images/' . $filename;
+            if ($data['profile_image']) {
                 unlink($data['profile_image']);
             }
             $data['profile_image'] = $imageName;
