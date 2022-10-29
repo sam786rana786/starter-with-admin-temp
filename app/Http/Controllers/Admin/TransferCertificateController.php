@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use App\Models\TransferCertificate;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +27,7 @@ class TransferCertificateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tc.create');
     }
 
     /**
@@ -37,7 +38,23 @@ class TransferCertificateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'class' => 'required',
+            'section' => 'required',
+            'admission_no' => 'required',
+            'pdf' => 'required'
+        ]);
+
+        if ($request->file('pdf'))
+        {
+            $file = $request->file('pdf');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('backend/uploads/tc'), $filename);
+            $imageName = 'backend/uploads/tc/' . $filename;
+            $validatedData['pdf'] = $imageName;
+        }
+        TransferCertificate::create($validatedData);
+        return redirect()->route('tc.index')->with('success', 'Transfer Certificate submitted successfully');
     }
 
     /**
@@ -46,9 +63,10 @@ class TransferCertificateController extends Controller
      * @param  \App\Models\TransferCertificate  $transferCertificate
      * @return \Illuminate\Http\Response
      */
-    public function show(TransferCertificate $transferCertificate)
+    public function show($id)
     {
-        //
+        $transferCertificate = TransferCertificate::findOrFail($id);
+        return view('admin.tc.show', compact('transferCertificate'));
     }
 
     /**
@@ -57,9 +75,10 @@ class TransferCertificateController extends Controller
      * @param  \App\Models\TransferCertificate  $transferCertificate
      * @return \Illuminate\Http\Response
      */
-    public function edit(TransferCertificate $transferCertificate)
+    public function edit($id)
     {
-        //
+        $transferCertificate = TransferCertificate::findOrFail($id);
+        return view('admin.tc.edit', compact('transferCertificate'));
     }
 
     /**
@@ -69,9 +88,37 @@ class TransferCertificateController extends Controller
      * @param  \App\Models\TransferCertificate  $transferCertificate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TransferCertificate $transferCertificate)
+    public function update(Request $request, $id)
     {
-        //
+        $transferCertificate = TransferCertificate::findOrFail($id);
+        $request->validate([
+            'class' => 'required',
+            'section' => 'required',
+            'admission_no' => 'required'
+        ]);
+
+        if ($request->file('pdf'))
+        {
+
+            $file = $request->file('pdf');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('backend/uploads/tc'), $filename);
+            $imageName = 'backend/uploads/tc/' . $filename;
+            if($transferCertificate->pdf)
+            {
+                unlink($transferCertificate->pdf);
+            }
+            $transferCertificate->pdf = $imageName;
+        }
+
+        if($request->admission_no)
+        {
+            $transferCertificate->class = $request->class;
+            $transferCertificate->section = $request->section;
+            $transferCertificate->admission_no = $request->admission_no;
+        }
+        $transferCertificate->save();
+        return redirect()->route('tc.index')->with('success', 'Transfer Certificate Updated Successfully.');
     }
 
     /**
@@ -80,8 +127,14 @@ class TransferCertificateController extends Controller
      * @param  \App\Models\TransferCertificate  $transferCertificate
      * @return \Illuminate\Http\Response
      */
-    public function delete(TransferCertificate $transferCertificate)
+    public function destroy($id)
     {
-        //
+        $transferCertificate = TransferCertificate::findOrFail($id);
+        if($transferCertificate->pdf)
+        {
+            unlink($transferCertificate->pdf);
+        }
+        $transferCertificate->delete();
+        return redirect()->route('tc.index')->with('success', 'Transfer Certificate deleted successfully.');
     }
 }

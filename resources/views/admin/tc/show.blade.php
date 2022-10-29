@@ -8,27 +8,27 @@
                     <div class="card">
                         <div class="row no-gutters align-items-center">
                             <div class="col-md-4">
-                                <img class="card-img img-fluid" src="{{ asset($notice->cover_image) }}" alt="Card image">
+                                <embed class="card-img img-fluid" src="{{ asset($transferCertificate->pdf) }}" width="100%">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h4 class="card-title">{{ $notice->title }}</h4>
-                                    <h5 class="card-title">{{ $notice->short_title }}</h5>
-                                    <p class="card-text">{{ $notice->description }}</p>
-                                    <p class="card-text"><a href="{{ $notice->link }}">{{ $notice->title }} and was created
-                                            by {{ $notice->created_by }}</a></p>
+                                    <h4 class="card-title">{{ $transferCertificate->admission_no }}</h4>
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            <p class="card-text">Class : {{ $transferCertificate->class }}</p>
+                                            <p class="card-text">Section : {{ $transferCertificate->section }}</p>
                                             <p class="card-text"><small
-                                                    class="text-muted">{{ $notice->created_at->diffForHumans() }}</small>
+                                                    class="text-muted">{{ $transferCertificate->created_at }}</small>
                                             </p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <a href="{{ route('notice.delete', $notice->id) }}"
-                                                class="btn btn-danger">Delete this Notice</a>
+                                            <button type="button" class="btn btn-danger deleteEmployee"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                value="{{ route('tc.destroy', $transferCertificate->id) }}"><i
+                                                    class="fas fa-trash-alt"></i> Delete this Transfer Certificate</button>
+                                            <a href="{{ route('tc.index') }}" class="btn btn-primary">Back</a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

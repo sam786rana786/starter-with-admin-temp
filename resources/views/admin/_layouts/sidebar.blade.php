@@ -110,26 +110,10 @@
                         Facilities
                     </a>
                 </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <li><a href="{{ route('album.index') }}" class="waves-effect">
                         <i class="ri-profile-line"></i>
                         <span>Gallery</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Annual Day</a></li>
-                        <li><a href="pages-timeline.html">Children Day</a></li>
-                        <li><a href="pages-directory.html">Gandhi Jyanti</a></li>
-                        <li><a href="pages-invoice.html">Games and Sports</a></li>
-                        <li><a href="pages-invoice.html">Fancy Dress Competition</a></li>
-                        <li><a href="pages-invoice.html">Quiz Contest</a></li>
-                        <li><a href="pages-invoice.html">Rakhee Making Competition</a></li>
-                        <li><a href="pages-invoice.html">Drawing Competition</a></li>
-                        <li><a href="pages-invoice.html">Science Exhibition</a></li>
-                        <li><a href="pages-invoice.html">Rangoli Competition</a></li>
-                        <li><a href="pages-invoice.html">Greeting Card Making Competition</a></li>
-                        <li><a href="pages-invoice.html">Birth Anniversary Celebration</a></li>
-                        <li><a href="pages-invoice.html">Glass Painting Competition</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -150,13 +134,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="{{ route('alumni.list') }}" class="waves-effect">
                         <i class="ri-profile-line"></i>
                         <span>Alumni</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Alumni Registration Form</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>

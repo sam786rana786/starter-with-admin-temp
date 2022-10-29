@@ -97,9 +97,8 @@
                                                         Edit</a>
                                                     <button type="button" class="btn btn-danger deleteEmployee"
                                                         data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                        value="{{ $employee->id }}"><i
+                                                        value="{{ route('employee.destroy', $employee->id) }}"><i
                                                             class="fas fa-trash-alt"></i>Delete</button>
-
                                                 </td>
                                             </tr>
                                         @endif
@@ -112,38 +111,4 @@
             </div>
         </div>
     </div>
-    <!-- modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="" method="POST" id="myForm">@csrf @method('DELETE')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Employee</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Are You sure you want to delete this employee?</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Yes Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-@endsection
-
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.deleteEmployee').click(function(e) {
-                e.preventDefault();
-                var employee_id = $(this).val();
-                var action = "{{ url('/employee/') }}" + '/' + employee_id;
-                $('#myForm').attr('action', action);
-                $('#deleteModal').modal('show');
-            });
-        });
-    </script>
 @endsection

@@ -10,14 +10,14 @@
                             <div class="card-title">
                                 <div class="row">
                                     <div class="col-10">
-                                        <h4>Notices</h4>
+                                        <h4>Transfer Certificates</h4>
                                     </div>
                                     <div class="col-2">
                                         <div class="d-flex">
                                             <div class="ms-1">
-                                                <a href="{{ route('notice.create') }}" class="btn btn-info"> <i
+                                                <a href="{{ route('tc.create') }}" class="btn btn-info"> <i
                                                         class="fas fa-plus"></i> Add
-                                                    Notice</a>
+                                                    Transfer Certificate</a>
                                             </div>
                                         </div>
                                     </div>
@@ -28,40 +28,32 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Notice Image</th>
-                                    <th>Title</th>
-                                    <th>Short Title</th>
-                                    <th>Description</th>
-                                    <th>Link</th>
-                                    <th>Created By</th>
+                                    <th>Transfer Certificate PDF</th>
+                                    <th>Class</th>
+                                    <th>Section</th>
+                                    <th>Admission Number</th>
                                     <th colspan="2">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($notices as $key => $notice)
-                                    @php
-
-                                        $nd = Illuminate\Support\Str::limit($notice->description, 40, '...');
-                                        $link = Illuminate\Support\Str::limit($notice->link, 10, '...');
-                                    @endphp
+                                @foreach ($transfers as $key => $notice)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td><img src="{{ asset($notice->cover_image) }}" alt="Notice Image"
-                                                class="avatar-sm"></td>
+                                        <td><iframe src="{{ asset($notice->pdf) }}" alt="Notice Image"
+                                                class="avatar-sm"></iframe></td>
+                                        <td>{{ $notice->class }}</td>
+                                        <td>{{ $notice->section }}</td>
                                         <td>
-                                            <a href="{{ route('notice.show', $notice->id) }}">{{ $notice->title }}</a>
+                                            <a href="{{ route('tc.show', $notice->id) }}">{{ $notice->admission_no }}</a>
                                         </td>
-                                        <td>{{ $notice->short_title }}</td>
-                                        <td>{{ $nd }}</td>
-                                        <td>{{ $link }}</td>
-                                        <td>{{ $notice->created_by }}</td>
                                         <td colspan="2">
-                                            <a href="{{ route('notice.edit', $notice->id) }}" class="btn btn-primary"><i
+                                            <a href="{{ route('tc.edit', $notice->id) }}" class="btn btn-primary"><i
                                                     class="fas fa-pencil-alt"></i>
                                                 Edit</a>
-                                            <a href="{{ route('notice.delete', $notice->id) }}" type="button"
-                                                class="btn btn-danger"><i class=" fas fa-trash-alt"></i>
-                                                Delete</a>
+                                            <button type="button" class="btn btn-danger deleteEmployee"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                value="{{ route('tc.destroy', $notice->id) }}"><i
+                                                    class="fas fa-trash-alt"></i> Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

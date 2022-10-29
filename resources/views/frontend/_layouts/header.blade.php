@@ -70,7 +70,7 @@
                     <a href="{{ route('gallery') }}" class="nav-link">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('tc') }}" class="nav-link">Transfer Certificates</a>
+                    <a href="{{ route('tcs') }}" class="nav-link">Transfer Certificates</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('alumni') }}" class="nav-link">Alumni</a>

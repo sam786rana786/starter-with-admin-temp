@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\VandMController;
 use App\Http\Controllers\Admin\AdmFrmController;
+use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\NoticeController;
@@ -40,10 +41,12 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('achievements/', 'achievements')->name('achievements');
     Route::get('info_link/', 'info_link')->name('info_link');
     Route::get('gallery/', 'gallery')->name('gallery');
-    Route::get('tc/', 'tc')->name('tc');
+    Route::get('tcs/', 'tcs')->name('tcs');
+    Route::post('tcs/', 'tcsearch')->name('tcs');
     Route::get('alumni/', 'alumni')->name('alumni');
     Route::get('contact/', 'contact')->name('contact');
     Route::get('adm_frm', 'adm_frm')->name('adm_frm');
+    Route::post('alumni', 'alumni_add')->name('alumni_add');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -109,8 +112,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('facilities', FacilitiesController::class)->except('destroy');
     Route::get('facility/delete/{facility}', [FacilitiesController::class, 'delete'])->name('facilities.destroy');
-    Route::resource('tc', TransferCertificateController::class)->except('destroy');
-    Route::get('tc/delete/{tc}', [TransferCertificateController::class, 'delete'])->name('tc.destroy');
+    Route::resource('tc', TransferCertificateController::class);
+    // Route::get('tc/delete/{transferCertificate}', [TransferCertificateController::class, 'delete'])->name('tc.destroy');
 
     Route::controller(UniformController::class)->group(function () {
         Route::get('create/admission/fees', 'createAdmissionFees')->name('createAdmissionFees');
@@ -139,9 +142,10 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(AdmFrmController::class)->group(function () {
             Route::get('online/admission/list', 'showAdmFrm')->name('online.admission');
             Route::put('update/online/admission/{admFrm}', 'update')->name('approveApplicant');
-            Route::get('online/admission/send/notification/{admFrm}', 'send_mail')->name('send_mail');
             Route::post('storeAdmFrm', 'storeAdmFrm')->name('storeAdmFrm');
         });
+        Route::get('alumni/list', [AlumniController::class, 'showAdmFrm'])->name('alumni.list');
+        Route::put('update/alumni/{alumni}', [AlumniController::class, 'update'])->name('alumni.update');
     });
 });
 

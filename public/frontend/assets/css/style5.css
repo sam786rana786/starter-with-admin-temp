@@ -30,7 +30,7 @@ a {
 .sub-header {
     height: 46px;
     line-height: 46px;
-    background-color: #265B94;
+    background-color: #265b94;
 }
 
 .sub-header ul li {
@@ -114,7 +114,7 @@ a {
   # Navigation
   ********************************/
 .navbar {
-    background-color: #265B94;
+    background-color: #265b94;
 }
 .sticky-top {
     transition: top 0.3s;
@@ -176,7 +176,7 @@ a {
 }
 
 .hero p {
-    color: #265B94;
+    color: #265b94;
 }
 
 .hero .button-get,
@@ -249,7 +249,7 @@ a {
     text-align: center;
 }
 .facility .facility-item .icon {
-    border: 3px dashed #265B94;
+    border: 3px dashed #265b94;
     height: 120px;
     width: 120px;
     padding: 7px;
@@ -258,7 +258,7 @@ a {
     margin-bottom: 20px;
 }
 .facility .facility-item .icon i {
-    background-color: #265B94;
+    background-color: #265b94;
     height: 100%;
     width: 100%;
     border-radius: 100%;
@@ -282,7 +282,7 @@ a {
 }
 
 .facility .facility-item:hover h4 {
-    color: #265B94;
+    color: #265b94;
 }
 
 .facility .facility-item p {
@@ -290,28 +290,28 @@ a {
     margin: 0px;
 }
 .facility > div > div > div:nth-child(1) .facility-item .icon {
-    border: 3px dashed #265B94;
+    border: 3px dashed #265b94;
 }
 .facility > div > div > div:nth-child(1) .facility-item .icon i {
-    background-color: #265B94;
+    background-color: #265b94;
 }
 .facility > div > div > div:nth-child(2) .facility-item .icon {
-    border: 3px dashed #265B94;
+    border: 3px dashed #265b94;
 }
 .facility > div > div > div:nth-child(2) .facility-item .icon i {
-    background-color: #265B94;
+    background-color: #265b94;
 }
 .facility > div > div > div:nth-child(3) .facility-item .icon {
-    border: 3px dashed #265B94;
+    border: 3px dashed #265b94;
 }
 .facility > div > div > div:nth-child(3) .facility-item .icon i {
-    background-color: #265B94;
+    background-color: #265b94;
 }
 .facility > div > div > div:nth-child(4) .facility-item .icon {
-    border: 3px dashed #265B94;
+    border: 3px dashed #265b94;
 }
 .facility > div > div > div:nth-child(4) .facility-item .icon i {
-    background-color: #265B94;
+    background-color: #265b94;
 }
 
 /********************************
@@ -322,7 +322,7 @@ a {
 }
 .about-section .section-heading {
     position: relative;
-    color: #265B94;
+    color: #265b94;
     font-weight: 600;
     margin-bottom: 2.5rem;
     font-size: 2.6rem;
@@ -363,8 +363,8 @@ a {
     vertical-align: middle;
     border-top: 10px solid #ee9142;
     border-left: 10px solid #ee9142;
-    border-bottom: 10px solid #265B94;
-    border-right: 10px solid #265B94;
+    border-bottom: 10px solid #265b94;
+    border-right: 10px solid #265b94;
 }
 
 /********************************
@@ -378,8 +378,8 @@ a {
 .about .left-img img {
     width: 100%;
     overflow: hidden;
-    border-top: 10px solid #265B94;
-    border-bottom: 10px solid #265B94;
+    border-top: 10px solid #265b94;
+    border-bottom: 10px solid #265b94;
     border-left: 10px solid #ee9142;
     border-right: 10px solid #ee9142;
 }
@@ -496,6 +496,15 @@ section.principal-section .quote:before {
     margin: 0 auto;
 }
 
+@media (max-width: 540px) {
+    #portfolio {
+        margin-top: 41rem !important;
+    }
+    .events {
+        height: 82rem !important;
+    }
+}
+
 .gallery-title {
     font-size: 70px;
     color: #ee9142;
@@ -537,7 +546,7 @@ section.principal-section .quote:before {
 footer {
     background-color: #ee9142;
     color: #b7b7b7;
-    border-top: 10px solid #265B94;
+    border-top: 10px solid #265b94;
 }
 
 footer .top-footer {
@@ -553,7 +562,7 @@ footer .top-footer {
 .copyright-sec {
     padding: 2rem 0;
     font-size: 13px;
-    background: #265B94;
+    background: #265b94;
 }
 
 footer .top-footer iframe {
@@ -563,7 +572,7 @@ footer .top-footer iframe {
 }
 
 footer .top-footer h4 {
-    color: #265B94;
+    color: #265b94;
     position: relative;
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -591,7 +600,7 @@ footer .top-footer h4 {
     align-items: center;
     width: 35px;
     height: 35px;
-    background-color: #265B94;
+    background-color: #265b94;
     border-radius: 40px;
     margin-right: 8px;
     transition: 0.1s ease all;

@@ -444,7 +444,7 @@ a {
 
 section.principal-section .quote:before {
     left: 0;
-    background: url(../img/double-quote2.svg) no-repeat;
+    background: url(../../assets/img/double-quote2.svg) no-repeat;
 }
 
 .section.principal-section .quote:before,
@@ -494,6 +494,15 @@ section.principal-section .quote:before {
 #portfolio {
     padding: 40px;
     margin: 0 auto;
+}
+
+@media (max-width: 540px) {
+    #portfolio {
+        margin-top: 41rem !important;
+    }
+    .events {
+        height: 82rem !important;
+    }
 }
 
 .gallery-title {

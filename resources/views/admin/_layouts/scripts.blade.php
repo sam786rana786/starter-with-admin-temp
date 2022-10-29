@@ -88,3 +88,14 @@
     });
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.deleteEmployee').click(function(e) {
+            e.preventDefault();
+            var employee_id = $(this).val();
+            var action = employee_id;
+            $('#myForm').attr('action', action);
+            $('#deleteModal').modal('show');
+        });
+    });
+</script>

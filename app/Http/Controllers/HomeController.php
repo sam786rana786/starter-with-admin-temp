@@ -9,12 +9,16 @@ use App\Models\AdmFrm;
 use App\Models\Banner;
 use App\Models\School;
 use App\Models\Highlight;
+use App\Models\Facilities;
 use App\Models\Admin\About;
+use Illuminate\Http\Request;
 use App\Models\Admin\Employee;
 use App\Models\Admin\Mandatory;
 use App\Http\Requests\AdmFrmRequest;
-use App\Models\Facilities;
+use App\Models\Alumni;
+use App\Models\TransferCertificate;
 use Intervention\Image\Facades\Image;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class HomeController extends Controller
 {
@@ -74,14 +78,52 @@ class HomeController extends Controller
         return view('frontend.pages.gallery', compact('albums', 'photos'));
     }
 
-    public function tc()
+    public function tcs()
     {
         return view('frontend.pages.tc');
+    }
+
+    public function tcsearch(Request $request)
+    {
+        $data = $request->all();
+        if(!empty($data))
+        {
+            $tc = TransferCertificate::where('class', $data['class'])->where('section', $data['section'])->where('admission_no', $data['admission_no'])->first();
+            if($tc) {
+                return view('frontend.pages.tc', compact('tc'))->with('success', 'Transfer Certificate found and loaded');
+            }else {
+                return redirect()->back()->with('warning', 'Either Transfer Certificate of the details submitted has not been uploaded yet or You have entered Wrong Details which donot match our records.');
+            }
+        }
     }
 
     public function alumni()
     {
         return view('frontend.pages.alumni');
+    }
+
+    public function alumni_add(Request $request)
+    {
+        $validatedData = $request->validate([
+            'student_id' => 'required',
+            'email' => 'required',
+            'name' => 'required',
+            'class' => 'required',
+            'section' => 'required',
+            'year_passing' => 'required',
+            'gender' => 'required',
+            'status' => 'required',
+            'landline' => 'required',
+            'mobile' => 'required',
+            'organization' => 'required',
+            'location' => 'required',
+            'qualification' => 'required',
+            'specialization' => 'required',
+            'institute' => 'required',
+        ]);
+        // dd($validatedData);
+        Alumni::create($validatedData);
+        return redirect()->route('alumni')->with('success', 'Your details has been sent to the Principal for Approval');
     }
 
     public function contact()

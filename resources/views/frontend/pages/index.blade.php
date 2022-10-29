@@ -124,7 +124,7 @@
 
     <!--------Principal Section-------->
     @php
-    $principal = App\Models\Vandm::findOrFail(3);
+        $principal = App\Models\Vandm::findOrFail(3);
     @endphp
     <section class="section principal-section" data-aos="fade-down"
         style="background-image: url({{ asset('frontend/assets/img/pexels-pixabay-372748.jpg') }});">
@@ -187,12 +187,13 @@
                     @php
                         $events = App\Models\Event::all();
                     @endphp
-                    <marquee behavior="scroll" direction="down" onmouseover="stop()" onmouseout="start()" height="570px">
+                    <marquee behavior="scroll" direction="down" onmouseover="stop()" onmouseout="start()"
+                        height="570px">
                         @foreach ($events as $event)
                             <div class="card mb-3 mt-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ $event->cover_image }}" class="img-fluid rounded-start"
+                                        <img src="{{ $event->cover_image }}" class="img-fluid rounded-start event_img"
                                             alt="{{ $event->title }}">
                                     </div>
                                     <div class="col-md-8">
@@ -218,7 +219,7 @@
     <!------Gallery Section--------->
     <section id="portfolio" class="mt-5" data-aos="slide-left">
         <div class="container-fluid">
-            <div class="gallery col-lg-12 mx-auto">
+            <div class="gallery col-xs-12 mx-auto">
                 <h1 class="gallery-title">Our School Gallery</h1>
             </div>
             <div class="buttonSection">

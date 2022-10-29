@@ -11,51 +11,82 @@
                                 Update Notice
                             </h4>
                             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                            <form action="{{ route('notice.update', $notice->id) }}" enctype="multipart/form-data"
+                            <form action="{{ route('tc.update', $transferCertificate->id) }}" enctype="multipart/form-data"
                                 method="POST">@csrf @method('PUT')
                                 <div class="row mb-3">
-                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                                    <label for="admission_no" class="col-sm-2 col-form-label">Class</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="title" name="title"
-                                            value="{{ $notice->title }}">
+                                        <select name="class" id="class" class="form-control">
+                                            <option>Select Class</option>
+                                            <option {{ $transferCertificate->class == 'NUR' ? 'selected' : '' }} value="NUR">
+                                                NUR</option>
+                                            <option {{ $transferCertificate->class == 'UKG' ? 'selected' : '' }} value="UKG">
+                                                UKG</option>
+                                            <option {{ $transferCertificate->class == 'I' ? 'selected' : '' }} value="I">
+                                                First</option>
+                                            <option {{ $transferCertificate->class == 'II' ? 'selected' : '' }} value="II">
+                                                Second</option>
+                                            <option {{ $transferCertificate->class == 'III' ? 'selected' : '' }} value="III">
+                                                Third</option>
+                                            <option {{ $transferCertificate->class == 'IV' ? 'selected' : '' }} value="IV">
+                                                Fourth</option>
+                                            <option {{ $transferCertificate->class == 'V' ? 'selected' : '' }} value="V">
+                                                Fifth</option>
+                                            <option {{ $transferCertificate->class == 'VI' ? 'selected' : '' }} value="VI">
+                                                Sixth</option>
+                                            <option {{ $transferCertificate->class == 'VII' ? 'selected' : '' }} value="VII">
+                                                Seventh</option>
+                                            <option
+                                                {{ $transferCertificate->class == 'VIII' ? 'selected' : '' }} value="VIII">
+                                                Eighth</option>
+                                            <option {{ $transferCertificate->class == 'IX' ? 'selected' : '' }} value="IX">
+                                                Ninth</option>
+                                            <option {{ $transferCertificate->class == 'X' ? 'selected' : '' }} value="X">
+                                                Tenth</option>
+                                            <option {{ $transferCertificate->class == 'XI' ? 'selected' : '' }} value="XI">
+                                                Plus One</option>
+                                            <option
+                                                {{ $transferCertificate->class == 'XII' ? 'selected' : '' }} value="XII">
+                                                Plus Two</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="short_title" class="col-sm-2 col-form-label">Short Title</label>
+                                    <label for="admission_no" class="col-sm-2 col-form-label">Section</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="short_title" name="short_title"
-                                            value="{{ $notice->short_title }}">
+                                        <select name="section" id="section" class="form-control">
+                                            <option>Please select section</option>
+                                            <option {{ $transferCertificate->section == 'A' ? 'selected' : ''  }} value="A">A</option>
+                                            <option {{ $transferCertificate->section == 'B' ? 'selected' : ''  }} value="B">B</option>
+                                            <option {{ $transferCertificate->section == 'C' ? 'selected' : ''  }} value="C">C</option>
+                                            <option {{ $transferCertificate->section == 'Medical' ? 'selected' : ''  }} value="Medical">Medical</option>
+                                            <option {{ $transferCertificate->section == 'Non-Medical' ? 'selected' : ''  }} value="Non-Medical">Non-Medical</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="link" class="col-sm-2 col-form-label">Link</label>
+                                    <label for="admission_no" class="col-sm-2 col-form-label">Admission Number</label>
                                     <div class="col-sm-10">
-                                        <input type="url" class="form-control" id="link" name="link"
-                                            value="{{ $notice->link }}">
+                                        <input type="text" class="form-control" id="admission_no" name="admission_no"
+                                            value="{{ $transferCertificate->admission_no }}">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                                    <label for="pdf" class="col-sm-2 col-form-label">Transfer Certificate PDF</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" id="description" name="description">{{ $notice->description }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="cover_image" class="col-sm-2 col-form-label">Notice Image</label>
-                                    <div class="col-sm-10">
-                                        <input type="file" class="form-control" id="image" name="cover_image">
+                                        <input type="file" class="form-control" id="image" name="pdf">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="profile_image" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage"
-                                            src="{{ !empty($notice->cover_image) ? url($notice->cover_image) : url('backend/images/small/img-2.jpg') }}"
-                                            alt="Image Profile" class="rounded avatar-lg">
+                                        <embed id="showImage"
+                                            src="{{ !empty($transferCertificate->pdf) ? url($transferCertificate->pdf) : url('backend/images/small/img-2.jpg') }}"
+                                            alt="Image Profile" class="rounded avatar-lg"></embed>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-rounded waves-effect waves-light">
-                                    Update notice
+                                    Update Transfer Certificate
                                 </button>
                             </form>
                         </div>

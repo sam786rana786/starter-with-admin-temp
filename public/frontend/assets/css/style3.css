@@ -498,6 +498,15 @@ section.principal-section .quote:before {
     margin: 0 auto;
 }
 
+@media (max-width: 540px) {
+    #portfolio {
+        margin-top: 41rem !important;
+    }
+    .events {
+        height: 82rem !important;
+    }
+}
+
 .gallery-title {
     font-size: 70px;
     color: #fbc108;

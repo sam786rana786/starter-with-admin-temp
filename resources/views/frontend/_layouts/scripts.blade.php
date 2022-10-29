@@ -5,7 +5,7 @@
    <!-- Fontawesome -->
    <script src="{{ asset('frontend/assets/fontawesome/js/all.min.js') }}"></script>
    <!-- AOS Script -->
-   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   <script src="{{ asset('frontend/assets/css/aos-master/dist/aos.js') }}"></script>
    <!-- My Own Script -->
    <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
    <script>
@@ -14,22 +14,52 @@
            duration: 1000,
        });
    </script>
-    <!--------------Visitor Counter ----------->
+   <!--------------Visitor Counter ----------->
    <script type="text/javascript">
-   var counterContainer = document.querySelector("#visitorcounter");
-   var visitCount = localStorage.getItem("page_view");
-   visitCount = 1;
-   localStorage.setItem("page_view", 1);
-   visitCount = Number(visitCount) + 1;
-   localStorage.setItem("page_view", visitCount);
-   counterContainer.innerHTML = visitCount;
+       var counterContainer = document.querySelector("#visitorcounter");
+       var visitCount = localStorage.getItem("page_view");
+       visitCount = 1;
+       localStorage.setItem("page_view", 1);
+       visitCount = Number(visitCount) + 1;
+       localStorage.setItem("page_view", visitCount);
+       counterContainer.innerHTML = visitCount;
+   </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="{{ asset('backend/assets/libs/toastr/build/toastr.min.js') }}"></script>
+   <script>
+       @if (Session::has('success'))
+           toastr.options = {
+               "closeButton": true,
+               "progressBar": true,
+               "positionClass": "toast-bottom-right",
+           }
+           toastr.success("{{ session('success') }}");
+       @endif
 
-    //    $(document).ready(function() {
-    //        var txt = '571845';
-    //        var txt = $('#visitorcounter').text();
-    //        var newTxt = txt.replace(/\w/g, function(c) {
-    //            return '<span>' + c + '</span>';
-    //        })
-    //        $('#visitorcounter').html(newTxt);
-    //    })
+       @if (Session::has('error'))
+           toastr.options = {
+               "closeButton": true,
+               "progressBar": true,
+               "positionClass": "toast-bottom-right",
+           }
+           toastr.error("{{ session('error') }}");
+       @endif
+
+       @if (Session::has('info'))
+           toastr.options = {
+               "closeButton": true,
+               "progressBar": true,
+               "positionClass": "toast-bottom-right",
+           }
+           toastr.info("{{ session('info') }}");
+       @endif
+
+       @if (Session::has('warning'))
+           toastr.options = {
+               "closeButton": true,
+               "progressBar": true,
+               "positionClass": "toast-bottom-right",
+           }
+           toastr.warning("{{ session('warning') }}");
+       @endif
    </script>

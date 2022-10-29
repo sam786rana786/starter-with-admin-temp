@@ -6,7 +6,7 @@
 <!--------Favicon----------------->
 <link rel="shortcut icon" href="{{ asset('backend/images/vlogo.png') }}" type="image/x-icon">
 <!--------Animation CSS----------->
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/aos-master/dist/aos.css') }}" />
 <!--------Bootstrap CSS----------->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
 <!--------Font Awesome CSS----------->
@@ -21,6 +21,7 @@
 
 <!--------Custom Style CSS----------->
 @php
-$image = App\Models\ImportantImages::findOrFail(2);
+    $image = App\Models\ImportantImages::findOrFail(2);
 @endphp
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/' . '/' . $image->style . '.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/libs/toastr/build/toastr.min.css') }}">
