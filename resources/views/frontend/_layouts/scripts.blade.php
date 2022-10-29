@@ -24,7 +24,7 @@
        localStorage.setItem("page_view", visitCount);
        counterContainer.innerHTML = visitCount;
    </script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   
    <script src="{{ asset('backend/assets/libs/toastr/build/toastr.min.js') }}"></script>
    <script>
        @if (Session::has('success'))

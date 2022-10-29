@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AchivementController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\EventController;
@@ -146,6 +147,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::get('alumni/list', [AlumniController::class, 'showAdmFrm'])->name('alumni.list');
         Route::put('update/alumni/{alumni}', [AlumniController::class, 'update'])->name('alumni.update');
+        Route::resource('achievement', AchivementController::class);
     });
 });
 

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Employee;
 use App\Models\Admin\Mandatory;
 use App\Http\Requests\AdmFrmRequest;
+use App\Models\Admin\Achivement;
 use App\Models\Alumni;
 use App\Models\TransferCertificate;
 use Intervention\Image\Facades\Image;
@@ -63,7 +64,8 @@ class HomeController extends Controller
 
     public function achievements()
     {
-        return view('frontend.pages.achievements');
+        $achievements = Achivement::all();
+        return view('frontend.pages.achievements', compact('achievements'));
     }
 
     public function info_link()

@@ -88,8 +88,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('uniform.index') }}">Fee Structure</a></li>
                         <li><a href="{{ route('online.admission') }}">Online Admission List</a></li>
-                        <li><a href="pages-directory.html">Admission Notification</a></li>
-                        <li><a href="pages-invoice.html">Rules and Regulations</a></li>
+                        {{-- <li><a href="#">Admission Notification</a></li>
+                        <li><a href="#">Rules and Regulations</a></li> --}}
                     </ul>
                 </li>
                 <li>
@@ -98,10 +98,10 @@
                         <span>Academics</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Student Daily Notice</a></li>
-                        <li><a href="pages-timeline.html">Syllabus (Upload as PDF)</a></li>
+                        <li><a href="{{  route('notice.index')  }}">Student Daily Notice</a></li>
+                        {{-- <li><a href="pages-timeline.html">Syllabus (Upload as PDF)</a></li>
                         <li><a href="pages-directory.html">Study Materials</a></li>
-                        <li><a href="pages-invoice.html">Result</a></li>
+                        <li><a href="pages-invoice.html">Result</a></li> --}}
                     </ul>
                 </li>
                 <li>
@@ -121,7 +121,7 @@
                         <span>Achievements</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">VPS Achivers List</a></li>
+                        <li><a href="{{ route('achievement.index') }}">VPS Achivers List</a></li>
                     </ul>
                 </li>
                 <li>
