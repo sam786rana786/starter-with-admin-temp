@@ -66,7 +66,7 @@ class AdmFrmRequest extends FormRequest
             'cur_brdpassyr' => 'required|numeric',
             'cur_medinst' => 'required',
             'cur_brdtype' => 'required',
-            'ack' => 'required',
+            'ack' => 'nullable',
             'stream' => 'nullable',
             'stu_photo' => 'required',
             'docum' => 'required',

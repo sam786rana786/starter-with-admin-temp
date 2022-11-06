@@ -100,8 +100,8 @@ class AdmFrmController extends Controller
         $adm->m_occup = $validatedData['m_occup'];
         $adm->m_desig = $validatedData['m_desig'];
         $adm->cur_schname = $validatedData['cur_schname'];
-        // $adm->cur_schcode = $validatedData['cur_schcode'];
-        // $adm->cur_brdroll = $validatedData['cur_brdroll'];
+        $adm->cur_schcode = $validatedData['cur_schcode'];
+        $adm->cur_brdroll = $validatedData['cur_brdroll'];
         $adm->cur_brdname = $validatedData['cur_brdname'];
         $adm->cur_brdpassyr = $validatedData['cur_brdpassyr'];
         $adm->cur_medinst = $validatedData['cur_medinst'];
