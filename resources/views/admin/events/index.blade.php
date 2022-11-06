@@ -47,8 +47,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td><img src="{{ asset($event->cover_image) }}" alt="Notice Image"
-                                                class="avatar-sm"></td>
+                                        <td><embed src="{{ asset($event->cover_image) }}" class="avatar-sm"></td>
                                         <td>
                                             <a href="{{ route('events.show', $event->id) }}">{{ $event->name }}</a>
                                         </td>

@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('qualification');
             $table->string('specialization');
             $table->longText('institute');
+            $table->string('photo');
             $table->boolean('is_approved')->default(0)->nullable();
             $table->timestamps();
         });

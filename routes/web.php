@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\VandMController;
 use App\Http\Controllers\Admin\AdmFrmController;
 use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\SchoolController;
@@ -20,7 +21,13 @@ use App\Http\Controllers\Admin\FacilitiesController;
 use App\Http\Controllers\Admin\MandatoryController;
 use App\Http\Controllers\Admin\HighlightsController;
 use App\Http\Controllers\Admin\ImportantImagesController;
+use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\TransferCertificateController;
+use App\Http\Controllers\LatestNoticeController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\RulesRegulationController;
+use App\Http\Controllers\TopBarController;
+use App\Http\Controllers\UsefulLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,14 +47,18 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('facility/', 'facilities')->name('facility');
     Route::get('admission/', 'admission')->name('admission');
     Route::get('achievements/', 'achievements')->name('achievements');
-    Route::get('info_link/', 'info_link')->name('info_link');
+    Route::get('notices/{notice}', 'notices')->name('notices.event');
+    Route::get('event/{event}', 'events')->name('events.notice');
+    Route::get('results/', 'info_link')->name('info_link');
     Route::get('gallery/', 'gallery')->name('gallery');
     Route::get('tcs/', 'tcs')->name('tcs');
-    Route::post('tcs/', 'tcsearch')->name('tcs');
+    Route::post('tcs/', 'tcsearch')->name('tc-s');
     Route::get('alumni/', 'alumni')->name('alumni');
     Route::get('contact/', 'contact')->name('contact');
     Route::get('adm_frm', 'adm_frm')->name('adm_frm');
     Route::post('alumni', 'alumni_add')->name('alumni_add');
+    Route::post('contact/store-message', 'storemessage')->name('storeMessage');
+    Route::get('latest_notice/{latest_notice}', [LatestNoticeController::class, 'show'])->name('latest_notice.show');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -114,7 +125,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('facilities', FacilitiesController::class)->except('destroy');
     Route::get('facility/delete/{facility}', [FacilitiesController::class, 'delete'])->name('facilities.destroy');
     Route::resource('tc', TransferCertificateController::class);
-    // Route::get('tc/delete/{transferCertificate}', [TransferCertificateController::class, 'delete'])->name('tc.destroy');
+    Route::resource('result', ResultController::class);
 
     Route::controller(UniformController::class)->group(function () {
         Route::get('create/admission/fees', 'createAdmissionFees')->name('createAdmissionFees');
@@ -142,12 +153,21 @@ Route::middleware(['auth'])->group(function () {
         Route::get('delete/fee/chart/{feeChart}', 'deleteFeeChart')->name('deleteFeeChart');
         Route::controller(AdmFrmController::class)->group(function () {
             Route::get('online/admission/list', 'showAdmFrm')->name('online.admission');
-            Route::put('update/online/admission/{admFrm}', 'update')->name('approveApplicant');
+            Route::put('update/online/admission/{admFrm}', 'update')->name('approve.Applicant');
             Route::post('storeAdmFrm', 'storeAdmFrm')->name('storeAdmFrm');
+            Route::delete('student/admission/{id}', 'destroy')->name('admfrm.delete');
+            Route::get('student/show/{id}', 'show')->name('adm.show');
         });
         Route::get('alumni/list', [AlumniController::class, 'showAdmFrm'])->name('alumni.list');
         Route::put('update/alumni/{alumni}', [AlumniController::class, 'update'])->name('alumni.update');
+        Route::delete('delete/alumni/{id}', [AlumniController::class, 'destroy'])->name('alumni.delete');
         Route::resource('achievement', AchivementController::class);
+        Route::resource('contacts', ContactController::class)->except('create', 'store', 'edit', 'update');
+        Route::resource('useful/link', UsefulLinkController::class)->except('show');
+        Route::resource('topbar', TopBarController::class)->except('show', 'create', 'store', 'destroy');
+        Route::resource('notifications', NotificationController::class)->except('create', 'store', 'destroy', 'show');
+        Route::resource('rulesregulations', RulesRegulationController::class)->except('create', 'store', 'destroy', 'show');
+        Route::resource('latest_notice', LatestNoticeController::class)->except('create', 'store', 'destroy', 'show');
     });
 });
 

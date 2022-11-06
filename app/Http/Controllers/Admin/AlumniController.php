@@ -40,4 +40,15 @@ class AlumniController extends Controller
         }
         return redirect()->back()->with('success', 'Mail has been sent to the applicant\'s mail id');
     }
+
+    public function destroy($id)
+    {
+        $alumni = Alumni::findOrFail($id);
+        if (file_exists(public_path($alumni->photo)))
+        {
+            unlink($alumni->photo);
+        }
+        $alumni->delete();
+        return redirect()->route('alumni.list')->with('success', 'Alumni Details has been deleted!');
+    }
 }

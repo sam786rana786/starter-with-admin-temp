@@ -27,7 +27,8 @@
                                 <div class="row mb-3">
                                     <label for="event_date" class="col-sm-2 col-form-label">Event Date</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="datetime-local" id="example-datetime-local-input" name="event_date">
+                                        <input class="form-control" type="datetime-local" id="example-datetime-local-input"
+                                            name="event_date">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -51,8 +52,8 @@
                                 <div class="row mb-3">
                                     <label for="profile_image" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" src="{{ url('backend/images/small/img-2.jpg') }}"
-                                            alt="Image Profile" class="rounded avatar-lg">
+                                        <embed id="showImage" src="{{ url('backend/images/small/img-2.jpg') }}"
+                                            class="rounded avatar-lg" />
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-rounded waves-effect waves-light">

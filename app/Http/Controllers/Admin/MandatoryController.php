@@ -97,88 +97,88 @@ class MandatoryController extends Controller
         {
             $aff_doc1 = $request->file('aff_doc');
             $aff_doc = $aff_doc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->aff_doc){unlink($mandatory->aff_doc);};
+            if(file_exists(public_path($mandatory->aff_doc)) ){unlink($mandatory->aff_doc);};
             $mandatory->aff_doc = $aff_doc;
         }
         if ($request->file('society_doc')) {
             $society_doc1 = $request->file('society_doc');
             $society_doc = $society_doc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->society_doc){unlink($mandatory->society_doc);};
+            if(file_exists(public_path($mandatory->society_doc)) ){unlink($mandatory->society_doc);};
             $mandatory->society_doc = $society_doc;
         }
         if ($request->file('noc_gov')) {
             $noc_gov1 = $request->file('noc_gov');
             $noc_gov = $noc_gov1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->noc_gov){unlink($mandatory->noc_gov);};
+            if(file_exists(public_path($mandatory->noc_gov)) ){unlink($mandatory->noc_gov);};
             $mandatory->noc_gov = $noc_gov;
         }
         if ($request->file('recognition_doc')) {
             $recognition_doc1 = $request->file('recognition_doc');
             $recognition_doc = $recognition_doc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->recognition_doc){unlink($mandatory->recognition_doc);};
+            if(file_exists(public_path($mandatory->recognition_doc)) ){unlink($mandatory->recognition_doc);};
             $mandatory->recognition_doc = $recognition_doc;
 
         }
         if ($request->file('building_noc')) {
             $building_noc1 = $request->file('building_noc');
             $building_noc = $building_noc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->building_noc){unlink($mandatory->building_noc);};
+            if(file_exists(public_path($mandatory->building_noc)) ){unlink($mandatory->building_noc);};
             $mandatory->building_noc = $building_noc;
 
         }
         if ($request->file('fire_noc')) {
             $fire_noc1 = $request->file('fire_noc');
             $fire_noc = $fire_noc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->fire_noc){unlink($mandatory->fire_noc);};
+            if(file_exists(public_path($mandatory->fire_noc)) ){unlink($mandatory->fire_noc);};
             $mandatory->fire_noc = $fire_noc;
 
         }
         if ($request->file('self_doc')) {
             $self_doc1 = $request->file('self_doc');
             $self_doc = $self_doc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->self_doc){unlink($mandatory->self_doc);};
+            if(file_exists(public_path($mandatory->self_doc)) ){unlink($mandatory->self_doc);};
             $mandatory->self_doc = $self_doc;
 
         }
         if ($request->file('iph_noc')) {
             $iph_noc1 = $request->file('iph_noc');
             $iph_noc = $iph_noc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->iph_noc){unlink($mandatory->iph_noc);};
+            if(file_exists(public_path($mandatory->iph_noc)) ){unlink($mandatory->iph_noc);};
             $mandatory->iph_noc = $iph_noc;
 
         }
         if ($request->file('fee_structure')) {
             $fee_structure1 = $request->file('fee_structure');
             $fee_structure = $fee_structure1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->fee_structure){unlink($mandatory->fee_structure);};
+            if(file_exists(public_path($mandatory->fee_structure)) ){unlink($mandatory->fee_structure);};
             $mandatory->fee_structure = $fee_structure;
 
         }
         if ($request->file('academic_cal')) {
             $academic_cal1 = $request->file('academic_cal');
             $academic_cal = $academic_cal1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->academic_cal){unlink($mandatory->academic_cal);};
+            if(file_exists(public_path($mandatory->academic_cal)) ){unlink($mandatory->academic_cal);};
             $mandatory->academic_cal = $academic_cal;
 
         }
         if ($request->file('smc')) {
             $smc1 = $request->file('smc');
             $smc = $smc1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->smc){unlink($mandatory->smc);};
+            if(file_exists(public_path($mandatory->smc)) ){unlink($mandatory->smc);};
             $mandatory->smc = $smc;
 
         }
         if ($request->file('pta')) {
             $pta1 = $request->file('pta');
             $pta = $pta1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->pta){unlink($mandatory->pta);};
+            if(file_exists(public_path($mandatory->pta)) ){unlink($mandatory->pta);};
             $mandatory->pta = $pta;
 
         }
         if ($request->file('three_year_result')) {
             $three_year_result1 = $request->file('three_year_result');
             $three_year_result = $three_year_result1->store('/backend/uploads/mandatory',  ['disk' => 'public_uploads']);
-            if($mandatory->three_year_result){unlink($mandatory->three_year_result);};
+            if(file_exists(public_path($mandatory->three_year_result)) ){unlink($mandatory->three_year_result);};
             $mandatory->three_year_result = $three_year_result;
         }
 

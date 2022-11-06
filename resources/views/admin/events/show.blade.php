@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="row no-gutters align-items-center">
                             <div class="col-md-4">
-                                <img class="card-img img-fluid" src="{{ asset($event->cover_image) }}" alt="Card image">
+                                <embed class="card-img img-fluid" src="{{ asset($event->cover_image) }}" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -19,8 +19,7 @@
                                             by {{ $event->created_by }}</a></p>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <p class="card-text"><small
-                                                    class="text-muted">{{ $event->event_date }}</small>
+                                            <p class="card-text"><small class="text-muted">{{ $event->event_date }}</small>
                                             </p>
                                         </div>
                                         <div class="col-sm-6">

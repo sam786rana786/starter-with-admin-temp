@@ -45,23 +45,23 @@ class NoticeController extends Controller
             'title' => 'required',
             'short_title' => 'required',
             'description' => 'required',
-            'cover_image' => 'required',
-            'link' => 'required'
+            'cover_image' => 'nullable',
+            'link' => 'nullable'
         ]);
 
         if($request->file('cover_image'))
         {
-            $image = $request->file('cover_image');
-            $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
-            Image::make($image)->resize(1920, 800)->save('backend/uploads/notices/'.$name_gen);
-            $save_url = 'backend/uploads/notices/'.$name_gen;
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
+            $file->move(public_path('backend/uploads/notices'), $filename);
+            $imageName = 'backend/uploads/notices/' . $filename;
             Notice::create([
                 'title' => $request->title,
                 'short_title' => $request->short_title,
                 'description' => $request->description,
                 'link' => $request->link,
                 'created_by' => Auth::user()->name,
-                'cover_image' => $save_url
+                'cover_image' => $imageName
             ]);
         } else {
             Notice::create([
@@ -114,8 +114,8 @@ class NoticeController extends Controller
             'title' => 'required',
             'short_title' => 'required',
             'description' => 'required',
-            'cover_image' => 'required',
-            'link' => 'required'
+            'cover_image' => 'nullable',
+            'link' => 'nullable'
         ]);
 
         $notice = Notice::findOrFail($id);
@@ -127,15 +127,15 @@ class NoticeController extends Controller
 
         if($request->file('cover_image'))
         {
-            $image = $request->file('cover_image');
-            $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
-            Image::make($image)->resize(1920, 800)->save('backend/uploads/notices/'.$name_gen);
-            $save_url = 'backend/uploads/notices/'.$name_gen;
-            if($notice->cover_image)
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
+            $file->move(public_path('backend/uploads/notices'), $filename);
+            $imageName = 'backend/uploads/notices/' . $filename;
+            if(file_exists(public_path($notice->cover_image)) )
             {
                 unlink($notice->cover_image);
             }
-            $notice->cover_image = $save_url;
+            $notice->cover_image = $imageName;
         }
         $notice->save();
         return redirect()->route('notice.index')->with('success', 'Notice updated successfully');
@@ -150,7 +150,7 @@ class NoticeController extends Controller
     public function delete($id)
     {
         $notice = Notice::findOrFail($id);
-        if($notice->cover_image)
+        if(file_exists(public_path($notice->cover_image)) )
         {
             unlink($notice->cover_image);
         }

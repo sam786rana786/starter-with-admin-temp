@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Event;
 use App\Models\Photo;
 use App\Models\Vandm;
 use App\Models\AdmFrm;
+use App\Models\Alumni;
 use App\Models\Banner;
+use App\Models\Footer;
+use App\Models\Notice;
 use App\Models\School;
 use App\Models\Highlight;
 use App\Models\Facilities;
 use App\Models\Admin\About;
+use App\Models\Admin\Result;
 use Illuminate\Http\Request;
+use App\Models\Admin\Contact;
 use App\Models\Admin\Employee;
 use App\Models\Admin\Mandatory;
-use App\Http\Requests\AdmFrmRequest;
 use App\Models\Admin\Achivement;
-use App\Models\Alumni;
 use App\Models\TransferCertificate;
-use Intervention\Image\Facades\Image;
-use Mockery\Generator\StringManipulation\Pass\Pass;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -32,7 +35,8 @@ class HomeController extends Controller
         $albums = Album::all();
         $photos = Photo::with('album')->select('id', 'album_id', 'cover_image', 'name', 'thumbnail')->get();
         $vandm = Vandm::all();
-        return view('frontend.pages.index', compact('banners', 'highlights', 'school', 'albums', 'photos', 'vandm'));
+        $counts = Banner::all()->count();
+        return view('frontend.pages.index', compact('banners', 'highlights', 'school', 'albums', 'photos', 'vandm', 'counts'));
     }
 
     public function about()
@@ -68,9 +72,20 @@ class HomeController extends Controller
         return view('frontend.pages.achievements', compact('achievements'));
     }
 
+    public function events(Event $event)
+    {
+        return view('frontend.pages.events', compact('event'));
+    }
+
+    public function notices(Notice $notice)
+    {
+        return view('frontend.pages.notices', compact('notice'));
+    }
+
     public function info_link()
     {
-        return view('frontend.pages.info_link');
+        $results = Result::all();
+        return view('frontend.pages.info_link', compact('results'));
     }
 
     public function gallery()
@@ -92,6 +107,11 @@ class HomeController extends Controller
         {
             $tc = TransferCertificate::where('class', $data['class'])->where('section', $data['section'])->where('admission_no', $data['admission_no'])->first();
             if($tc) {
+                $details = [
+                    'title' => 'Transfer Certificate Downloaded',
+                    'body' => 'A transfer Certificate has been downloaded. ' . $tc->admission_no . ' ' . $tc->class . ' ' . $tc->section,
+                ];
+                Mail::to('viveka_wrs2000@rediffmail.com')->send(new \App\Mail\ApprovalEmail($details));
                 return view('frontend.pages.tc', compact('tc'))->with('success', 'Transfer Certificate found and loaded');
             }else {
                 return redirect()->back()->with('warning', 'Either Transfer Certificate of the details submitted has not been uploaded yet or You have entered Wrong Details which donot match our records.');
@@ -107,23 +127,35 @@ class HomeController extends Controller
     public function alumni_add(Request $request)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required',
+            'student_id' => 'nullable',
             'email' => 'required',
             'name' => 'required',
-            'class' => 'required',
-            'section' => 'required',
+            'class' => 'nullable',
+            'section' => 'nullable',
             'year_passing' => 'required',
             'gender' => 'required',
             'status' => 'required',
-            'landline' => 'required',
+            'landline' => 'nullable',
             'mobile' => 'required',
             'organization' => 'required',
             'location' => 'required',
             'qualification' => 'required',
             'specialization' => 'required',
             'institute' => 'required',
+            'photo' => 'required'
         ]);
-        // dd($validatedData);
+        if($request->file('photo')) {
+            $file = $request->file('photo');
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
+            $file->move(public_path('backend/uploads/alumni'), $filename);
+            $imageName = 'backend/uploads/alumni/' . $filename;
+            $validatedData['photo'] = $imageName;
+        }
+        $details = [
+            'title' => 'Alumni Details Has been uploaded to the CMS Kindly Check',
+            'body' => 'Alumni details has been submitted to the CMS. Alumni Name ' . $validatedData['name'] . ' email ' . $validatedData['email'],
+        ];
+        Mail::to('viveka_wrs2000@rediffmail.com')->send(new \App\Mail\ApprovalEmail($details));
         Alumni::create($validatedData);
         return redirect()->route('alumni')->with('success', 'Your details has been sent to the Principal for Approval');
     }
@@ -133,75 +165,27 @@ class HomeController extends Controller
         return view('frontend.pages.contact');
     }
 
+    public function storemessage(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'mobile' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+
+        $details = [
+            'title' => 'A Contact Message has been Submitted',
+            'body' => 'Message has been submitted to the CMS.',
+            'sub-details' => 'Message Sender Name ' . $validatedData['name'] . ' Email ' . $validatedData['email'] . ' Message ' . $validatedData['message']
+        ];
+        Mail::to('viveka_wrs2000@rediffmail.com')->send(new \App\Mail\ApprovalEmail($details));
+        Contact::create($validatedData);
+        return redirect()->route('contact')->with('success', 'Your message has been sent to the School Principal');
+    }
+
     public function adm_frm()
     {
         return view('frontend.pages.adm_frm');
-    }
-
-    public function storeAdmFrm(AdmFrmRequest $request)
-    {
-
-        $pcfad = new AdmFrm();
-        if ($request->file('stu_photo')) {
-            $image1 = $request->file('stu_photo');
-            $name_gen = hexdec(uniqid()) . '.' . $image1->getClientOriginalExtension();
-            Image::make($image1)->resize(360, 263)->save('backend/uploads/online_admission/' . $name_gen);
-            $save_url1 = 'backend/uploads/online_admission/' . $name_gen;
-            $pcfad->stu_photo = $save_url1;
-        }
-
-        if ($request->file('docum')) {
-            $image2 = $request->file('docum')->store('backend/uploads/online_admission/',  ['disk' => 'public_uploads']);
-            $save_url2 = $image2;
-            $pcfad->docum = $save_url2;
-        }
-
-        $pcfad->student_class = $request->student_class;
-        $pcfad->stream = $request->stream;
-        $pcfad->stu_fname = $request->stu_fname;
-        $pcfad->stu_midname = $request->stu_midname;
-        $pcfad->stu_lastname = $request->stu_lastname;
-        $pcfad->gender = $request->gender;
-        $pcfad->stu_dob = $request->stu_dob;
-        $pcfad->religion = $request->religion;
-        $pcfad->category = $request->category;
-        $pcfad->nation = $request->nation;
-        $pcfad->stu_mobno = $request->stu_mobno;
-        $pcfad->lrn_disbl = $request->lrn_disbl;
-        $pcfad->hlth_cncrn = $request->hlth_cncrn;
-        $pcfad->stu_mailid = $request->stu_mailid;
-        $pcfad->prefer = $request->prefer;
-        $pcfad->comn_mobno = $request->comn_mobno;
-        $pcfad->comn_mailid = $request->comn_mailid;
-        $pcfad->res_address = $request->res_address;
-        $pcfad->res_post = $request->res_post;
-        $pcfad->res_dist = $request->res_dist;
-        $pcfad->res_state = $request->res_state;
-        $pcfad->res_pin = $request->res_pin;
-        $pcfad->f_name = $request->f_name;
-        $pcfad->f_mobile = $request->f_mobile;
-        $pcfad->f_mailid = $request->f_mailid;
-        $pcfad->f_mnite = $request->f_mnite;
-        $pcfad->f_qual = $request->f_qual;
-        $pcfad->f_occup = $request->f_occup;
-        $pcfad->f_desig = $request->f_desig;
-        $pcfad->m_name = $request->m_name;
-        $pcfad->m_mobile = $request->m_mobile;
-        $pcfad->m_mailid = $request->m_mailid;
-        $pcfad->m_mnite = $request->m_mnite;
-        $pcfad->m_qual = $request->m_qual;
-        $pcfad->m_occup = $request->m_occup;
-        $pcfad->m_desig = $request->m_desig;
-        $pcfad->cur_schname = $request->cur_schname;
-        $pcfad->cur_schcode = $request->cur_schcode;
-        $pcfad->cur_brdroll = $request->cur_brdroll;
-        $pcfad->cur_brdname = $request->cur_brdname;
-        $pcfad->cur_brdpassyr = $request->cur_brdpassyr;
-        $pcfad->cur_medinst = $request->cur_medinst;
-        $pcfad->cur_brdtype = $request->cur_brdtype;
-        $pcfad->ack = $request->ack;
-        $pcfad->save();
-
-        return redirect()->route('home');
     }
 }

@@ -39,40 +39,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required',
             'title' => 'required',
             'description' => 'required',
             'event_date' => 'required',
-            'cover_image' => 'required',
-            'link' => 'required'
+            'cover_image' => 'nullable',
+            'link' => 'nullable'
         ]);
 
         if($request->file('cover_image'))
         {
-            $image = $request->file('cover_image');
-            $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
-            Image::make($image)->resize(1920, 800)->save('backend/uploads/events/'.$name_gen);
-            $save_url = 'backend/uploads/events/'.$name_gen;
-            Event::create([
-                'name' => $request->name,
-                'title' => $request->title,
-                'description' => $request->description,
-                'event_date' => $request->event_date,
-                'link' => $request->link,
-                'created_by' => Auth::user()->name,
-                'cover_image' => $save_url
-            ]);
-        } else {
-            Event::create([
-                'title' => $request->title,
-                'name' => $request->name,
-                'description' => $request->description,
-                'event_date' => $request->event_date,
-                'link' => $request->link,
-                'created_by' => Auth::user()->name,
-            ]);
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
+            $file->move(public_path('backend/uploads/events'), $filename);
+            $imageName = 'backend/uploads/events/' . $filename;
+            $validatedData['cover_image'] = $imageName;
         }
+        Event::create($validatedData);
         return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
@@ -109,34 +93,34 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required',
             'name' => 'required',
             'description' => 'required',
             'event_date' => 'required',
-            'cover_image' => 'required',
-            'link' => 'required'
+            'cover_image' => 'nullable',
+            'link' => 'nullable'
         ]);
 
         $event = Event::findOrFail($id);
-        $event->title = $request->title;
-        $event->name = $request->name;
-        $event->description = $request->description;
-        $event->event_date = $request->event_date;
-        $event->link = $request->link;
+        $event->title = $validatedData['title'];
+        $event->name = $validatedData['name'];
+        $event->description = $validatedData['description'];
+        $event->event_date = $validatedData['event_date'];
+        $event->link = $validatedData['link'];
         $event->created_by = Auth::user()->name;
 
         if($request->file('cover_image'))
         {
-            $image = $request->file('cover_image');
-            $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
-            Image::make($image)->resize(1920, 800)->save('backend/uploads/events/'.$name_gen);
-            $save_url = 'backend/uploads/events/'.$name_gen;
-            if($event->cover_image)
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
+            $file->move(public_path('backend/uploads/events'), $filename);
+            $imageName = 'backend/uploads/events/' . $filename;
+            if(file_exists(public_path($event->cover_image)))
             {
                 unlink($event->cover_image);
             }
-            $event->cover_image = $save_url;
+            $event->cover_image = $imageName;
         }
         $event->save();
         return redirect()->route('events.index')->with('success', 'Event updated successfully');

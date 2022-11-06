@@ -36,7 +36,7 @@ class VandMController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
             Image::make($image)->resize(555, 571)->save('backend/uploads/vandm/'.$name_gen);
             $save_url = 'backend/uploads/vandm/'.$name_gen;
-            if($vandm->cover_image)
+            if(file_exists(public_path($vandm->cover_image)) )
             {
                 unlink($vandm->cover_image);
             }

@@ -73,7 +73,7 @@ class BannerController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
             Image::make($image)->resize(1920, 800)->save('backend/uploads/banner/'.$name_gen);
             $save_url = 'backend/uploads/banner/'.$name_gen;
-            if($banner['banner_image'])
+            if(file_exists(public_path($banner['banner_image'])))
             {
                 unlink($banner['banner_image']);
             }
@@ -86,7 +86,7 @@ class BannerController extends Controller
     public function delete($id)
     {
         $banner = Banner::findOrFail($id);
-        if($banner['banner_image'])
+        if(file_exists(public_path($banner['banner_image'])))
         {
             unlink($banner['banner_image']);
         }

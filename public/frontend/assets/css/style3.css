@@ -482,7 +482,7 @@ section.principal-section .quote:before {
 .events h2 {
     font-size: 55px;
     font-weight: 700;
-    color: #fbc108;
+    color: #072f54;
     text-align: center;
 }
 
@@ -509,7 +509,7 @@ section.principal-section .quote:before {
 
 .gallery-title {
     font-size: 70px;
-    color: #fbc108;
+    color: #072f54;
     text-align: center;
     font-weight: 700;
     padding: 40px 20px 60px;
@@ -517,24 +517,24 @@ section.principal-section .quote:before {
 
 .filter-button {
     font-size: 18px;
-    border: 1px solid #fbc108;
+    border: 1px solid #072f54;
     border-radius: 5px;
     text-align: center;
-    color: #fbc108;
+    color: #072f54;
     margin-bottom: 30px;
 }
 
 .filter-button:hover {
     font-size: 18px;
-    border: 1px solid #fbc108;
+    border: 1px solid #072f54;
     border-radius: 5px;
     text-align: center;
     color: #fff;
-    background-color: #fbc108;
+    background-color: #072f54;
 }
 
 .btn-default:active .filter-button:active {
-    background-color: #fbc108;
+    background-color: #072f54;
     color: #fff;
 }
 
@@ -679,4 +679,52 @@ footer .top-footer h4 {
     .events .col-md-4 {
         display: none;
     }
+}
+
+/* // Contact Us Page Styles Newly added */
+.bg-theme {
+    background: #fbc108 !important;
+}
+
+.card-contact {
+    margin-left: -130px;
+}
+
+.card-contact h1 {
+    color: #fff;
+    font-size: 30px;
+    position: relative;
+    margin-bottom: 40px;
+}
+.card-contact h1:before {
+    content: "";
+    height: 3px;
+    width: 80px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -10px;
+}
+
+.icon-part {
+    height: 40px;
+    width: 40px;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.btn-submit {
+    padding: 8px 25px !important;
+    background-color: #fbc108 !important;
+    color: #fff;
+    border-radius: 20px !important;
+}
+
+.anchor {
+    text-decoration: none;
+    color: #fff;
 }

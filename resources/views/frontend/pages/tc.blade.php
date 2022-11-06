@@ -20,7 +20,7 @@
         <div class="col-sm-12">
             <div class="row mb-5 mt-3">
                 <h2 class="text-center">Transfer Certificate Retrival Form</h2>
-                <form action="{{ route('tcs') }}" method="POST">@csrf
+                <form action="{{ route('tc-s') }}" method="POST">@csrf
                     <div class="row mb-3 mt-5">
                         <div class="col-sm-12">
                             <div class="form-group">

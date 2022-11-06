@@ -1,4 +1,4 @@
-{{-- <x-guest-layout>
+<x-guest-layout>
     <div class="bg-overlay"></div>
     <div class="wrapper-page">
         <div class="container-fluid p-0">
@@ -87,4 +87,4 @@
         <!-- end container -->
     </div>
     <!-- end -->
-</x-guest-layout> --}}
+</x-guest-layout>

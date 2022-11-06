@@ -14,23 +14,38 @@
                                 @foreach ($alumnis as $alumni)
                                     <div class="col-sm-3">
                                         <div class="card">
+                                            <img src="{{ asset($alumni->photo) }}" alt="{{ $alumni->name }}"
+                                                class="card-img-top" height="343">
                                             <div class="card-body">
                                                 <h2 class="card-title"> Alumni Name : {{ $alumni->name }}</h2>
-                                                <h4 class="card-title">Student ID : {{ $alumni->student_id }}</h4>
                                                 <h4 class="card-title">Alumni Email : {{ $alumni->email }}</h4>
-                                                <h4 class="card-title">Class : {{ $alumni->class }}</h4>
-                                                <h4 class="card-title">Section : {{ $alumni->section }}</h4>
-                                                <h4 class="card-title">Passing Year : {{ $alumni->year_passing }}</h4>
-                                                <h4 class="card-title">Gender : {{ $alumni->gender }}</h4>
-                                                <h4 class="card-title">Status : {{ $alumni->status }}</h4>
-                                                <h4 class="card-title">Landline Number : {{ $alumni->landline }}</h4>
-                                                <h4 class="card-title">Mobile Number : {{ $alumni->mobile }}</h4>
-                                                <h4 class="card-title">Organisation : {{ $alumni->organization }}</h4>
-                                                <h4 class="card-title">Location : {{ $alumni->location }}</h4>
-                                                <h4 class="card-title">Qualification : {{ $alumni->qualification }}</h4>
-                                                <h4 class="card-title">Specialization In: {{ $alumni->specialization }}
-                                                </h4>
-                                                <h4 class="card-title">Institute : {{ $alumni->institute }}</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">Class : {{ $alumni->class }}</h4>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">Section : {{ $alumni->section }}</h4>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">Passing Year : {{ $alumni->year_passing }}
+                                                        </h4>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">Gender : {{ $alumni->gender }}</h4>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4 class="card-title">Status : {{ $alumni->status }}</h4>
+                                                    </div>
+                                                    <h4 class="card-title">Landline Number : {{ $alumni->landline }}</h4>
+                                                    <h4 class="card-title">Mobile Number : {{ $alumni->mobile }}</h4>
+                                                    <h4 class="card-title">Organisation : {{ $alumni->organization }}</h4>
+                                                    <h4 class="card-title">Location : {{ $alumni->location }}</h4>
+                                                    <h4 class="card-title">Qualification : {{ $alumni->qualification }}
+                                                    </h4>
+                                                    <h4 class="card-title">Specialization In: {{ $alumni->specialization }}
+                                                    </h4>
+                                                    <h4 class="card-title">Institute : {{ $alumni->institute }}</h4>
+                                                </div>
                                             </div>
                                             <div class="card-footer text-center">
                                                 <form action="{{ route('alumni.update', $alumni->id) }}" method="POST">
@@ -54,6 +69,11 @@
                                                     </div>
                                                     <button type="submit" class="btn btn-primary w-100">Submit</button>
                                                 </form>
+                                                <button type="button" class="btn btn-danger deleteEmployee mt-2 w-100"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                    value="{{ route('alumni.delete', $alumni->id) }}"><i
+                                                        class="fas fa-trash-alt"></i> Delete
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

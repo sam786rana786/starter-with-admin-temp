@@ -3,48 +3,29 @@
 @section('content')
     <!--------Hero Section----------->
     <section class="hero">
-        <div class="hero-container">
-            <div id="herocarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators" id="hero-carousel-indicators">
-                    <button type="button" data-bs-target="#herocarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#herocarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#herocarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <!------Slide 1--------->
-                <div class="carousel-inner" role="listbox">
-                    @foreach ($banners as $banner)
-                        <div class="carousel-item {{ $banner->banner_image ? 'active' : '' }}">
-                            <img src="{{ asset($banner->banner_image) }}" class="hero-image" alt="carousel image">
-                            <div class="carousel-caption d-none d-md-block">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#herocarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#herocarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($banners as $key => $banner)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{ asset($banner->banner_image) }}" class="d-block w-100" alt="{{ $banner->title }}">
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!------Latest Notice Section--------->
-    <section class="latest" data-aos="zoom-in-down">
+    <section class="latest">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     @php
-                        $notice = App\Models\Notice::get()->last();
+                        $latestNotice = App\Models\LatestNotice::findOrFail(1);
                     @endphp
                     <marquee direction="left" loop="true" onmouseover="this.stop();" onmouseout="this.start();">
-                        <h4><a href="{{ $notice->link }}" class="text-white">{{ $notice->title }}</a></h4>
+                        <h4>
+                            <a href="{{ route('latest_notice.show', $latestNotice->id) }}" class="text-white">{{ $latestNotice->title }}</a>
+                        </h4>
                     </marquee>
                 </div>
             </div>
@@ -154,19 +135,19 @@
                 <div class="col-sm-6">
                     <h2>Latest Notices</h2>
                     @php
-                        $notices = App\Models\Notice::all();
+                        $notices = App\Models\Notice::whereMonth('created_at', Carbon\Carbon::now()->month)->get();
                     @endphp
                     <marquee behavior="scroll" direction="up" onmouseover="stop()" onmouseout="start()" height="570px">
                         @foreach ($notices as $notice)
                             <div class="card mb-3 mt-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ $notice->cover_image }}" class="img-fluid rounded-start"
-                                            alt="{{ $notice->title }}">
+                                        <img src="{{ asset('backend/images/Picture1.png') }}"
+                                            class="img-fluid rounded-start" alt="{{ $notice->title }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title"><a href="{{ $notice->link }}"
+                                            <h5 class="card-title"><a href="{{ route('notices.event', $notice->id) }}"
                                                     class="text-dark">{{ $notice->title }}</a>
                                             </h5>
                                             <p class="card-text">{!! Illuminate\Support\Str::limit($notice->description, 40, '...') !!}</p>
@@ -185,7 +166,7 @@
                 <div class="col-sm-6">
                     <h2>Upcoming Events</h2>
                     @php
-                        $events = App\Models\Event::all();
+                        $events = App\Models\Event::whereMonth('event_date', Carbon\Carbon::now()->month)->get();
                     @endphp
                     <marquee behavior="scroll" direction="down" onmouseover="stop()" onmouseout="start()"
                         height="570px">
@@ -193,16 +174,16 @@
                             <div class="card mb-3 mt-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ $event->cover_image }}" class="img-fluid rounded-start event_img"
-                                            alt="{{ $event->title }}">
+                                        <img src="{{ asset('backend/images/Picture1.png') }}"
+                                            class="img-fluid rounded-start event_img" alt="{{ $event->title }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title"><a href="{{ $event->link }}}}"
+                                            <h5 class="card-title"><a href="{{ route('events.notice', $event->id) }}"
                                                     class="text-dark">{{ $event->title }}</a></h5>
                                             <p class="card-text">{!! Illuminate\Support\Str::limit($event->description, 40, '...') !!}</p>
                                             <p class="card-text"><small
-                                                    class="text-muted">{{ $event->created_at->diffForHumans() }}</small>
+                                                    class="text-muted">{{ \Carbon\Carbon::parse($event->created_at)->diffForHumans() }}</small>
                                             </p>
                                         </div>
                                     </div>
@@ -226,7 +207,7 @@
                 <button class="btn btn-default filter-button" data-filter="all">All</button>
                 @foreach ($albums as $album)
                     <button class="btn btn-default filter-button"
-                        data-filter="{{ $album->slug }}">{{ $album->slug }}</button>
+                        data-filter="{{ $album->slug }}">{{ $album->name }}</button>
                 @endforeach
             </div>
             <div class="row">
@@ -244,26 +225,11 @@
         </div>
         </div>
     </section>
-    <div id="myModal" class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1">
+    <div id="myModal" class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1"
+        data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Subscribe our Newsletter</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email Address">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
-                </div>
-            </div>
+            <img src="{{ asset('frontend/assets/img/top_achievers.jpg') }}" alt="Achievers"
+                style="width: 150%;margin-left: -25%;">
         </div>
     </div>
 @endsection

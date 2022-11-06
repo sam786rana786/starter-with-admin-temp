@@ -104,7 +104,7 @@ class HighlightsController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
             Image::make($image)->resize(360, 263)->save('backend/uploads/highlights/'.$name_gen);
             $save_url = 'backend/uploads/highlights/'.$name_gen;
-            if($highlight['card_image'])
+            if(file_exists(public_path($highlight['card_image'])))
             {
                 unlink($highlight['card_image']);
             }
@@ -123,7 +123,7 @@ class HighlightsController extends Controller
     public function destroy($id)
     {
         $highlight = Highlight::findOrFail($id);
-        if($highlight['card_image'])
+        if(file_exists(public_path($highlight['card_image'])))
         {
             unlink($highlight['card_image']);
         }

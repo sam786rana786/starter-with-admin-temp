@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="row no-gutters align-items-center">
                             <div class="col-md-4">
-                                <img class="card-img img-fluid" src="{{ asset($notice->cover_image) }}" alt="Card image">
+                                <embed class="card-img img-fluid" src="{{ asset($notice->cover_image) }}" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

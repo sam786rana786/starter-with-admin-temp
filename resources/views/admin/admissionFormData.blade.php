@@ -17,20 +17,24 @@
                                             <img src="{{ asset($admFrm->stu_photo) }}" alt="{{ $admFrm->stu_fname }}"
                                                 class="card-img-top" height="343">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $admFrm->stu_fname }} {{ $admFrm->stu_midname }}
-                                                    {{ $admFrm->stu_lastname }}</h5>
+                                                <a href="{{ route('adm.show', $admFrm->id) }}">
+                                                    <h5 class="card-title">{{ $admFrm->stu_fname }}
+                                                        {{ $admFrm->stu_midname }}
+                                                        {{ $admFrm->stu_lastname }}</h5>
+                                                </a>
                                                 <p class="card-text">
                                                     Admission For Class {{ $admFrm->student_class }} and the Stream is
                                                     {{ $admFrm->stream }} and Gender of the student is {{ $admFrm->gender }}
                                                 </p>
                                             </div>
                                             <div class="card-footer text-center">
-                                                <form action="{{ route('approveApplicant', $admFrm->id) }}" method="POST">
+                                                <form action="{{ route('approve.Applicant', $admFrm->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="is_approved"
-                                                            value="1" {{ $admFrm->is_approved == 1 ? 'checked' : '' }}>
+                                                            value="1"
+                                                            {{ $admFrm->is_approved == 1 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Approve
                                                         </label>
@@ -40,11 +44,15 @@
                                                             value="0"
                                                             {{ $admFrm->is_approved == 0 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="flexRadioDefault2">
-                                                            Dispprove
+                                                            Disapprove
                                                         </label>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary w-100">Submit</button>
                                                 </form>
+                                                <button type="button" class="btn btn-danger deleteEmployee mt-2 w-100"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                    value="{{ route('admfrm.delete', $admFrm->id) }}"><i
+                                                        class="fas fa-trash-alt"></i> Delete</button>
                                             </div>
                                         </div>
                                     </div>

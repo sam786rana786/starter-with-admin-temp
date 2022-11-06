@@ -52,8 +52,8 @@
         }
 
         /* .bord {
-                                border: 1px solid black;
-                            } */
+                                        border: 1px solid black;
+                                    } */
 
         .buttons {
             padding: 5%;
@@ -94,7 +94,7 @@
 
 @section('content')
     @php
-    $image = App\Models\ImportantImages::findOrFail(2);
+        $image = App\Models\ImportantImages::findOrFail(2);
     @endphp
     <section class="pg-h" style="background-image: url({{ asset($image->admission_image) }})">
         <div class="overlay">
@@ -135,16 +135,20 @@
         </div>
 
         <!-- Admission Notification Modal -->
+        @php
+            $notification = App\Models\Notification::findOrFail(1);
+        @endphp
         <div class="modal fade" id="admissionNotification" tabindex="-1" aria-labelledby="admissionNotificationLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="admissionNotificationLabel">Modal title</h5>
+                        <h5 class="modal-title" id="admissionNotificationLabel">Admission Notification</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        ...
+                    <div class="modal-body text-center">
+                        <a href="{{ url($notification->pdf) }}" class="btn btn-lg btn-success" target="_blank">Download PDF
+                            of Admission Notification</a>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -154,19 +158,21 @@
             </div>
         </div>
         <!-- Rules and Regulations Modal -->
+        @php
+            $rule = App\Models\RulesRegulation::findOrFail(1);
+        @endphp
         <div class="modal fade" id="rules" tabindex="-1" aria-labelledby="rulesLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="rulesLabel">Modal title</h5>
+                        <h5 class="modal-title" id="rulesLabel">Rules and Regulations of The School</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        {!! $rule->rules !!}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>

@@ -46,8 +46,10 @@
                                                         Edit</a>
                                                     <button type="button" class="btn btn-danger deleteEmployee"
                                                         data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                        value="{{ $employee->id }}"><i
-                                                            class="fas fa-trash-alt"></i>Delete</button>
+                                                        value="{{ route('employee.destroy', $employee->id) }}"><i
+                                                            class="fas fa-trash-alt"></i>
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endif

@@ -45,7 +45,7 @@ class FacilitiesController extends Controller
         if ($request->file('facilty_image'))
         {
             $file = $request->file('facilty_image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/adm_frm'), $filename);
             $imageName = 'backend/uploads/adm_frm/' . $filename;
             $validatedData['facilty_image'] = $imageName;
@@ -99,9 +99,13 @@ class FacilitiesController extends Controller
         if ($request->file('facilty_image'))
         {
             $file = $request->file('facilty_image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/adm_frm'), $filename);
             $imageName = 'backend/uploads/adm_frm/' . $filename;
+            if(file_exists(public_path($facility->facilty_image)))
+            {
+                unlink($facility->facilty_image);
+            }
             $facility->facilty_image = $imageName;
         }
 
@@ -124,7 +128,7 @@ class FacilitiesController extends Controller
      */
     public function delete(Facilities $facility)
     {
-        if($facility->facilty_image)
+        if(file_exists(public_path($facility->facilty_image)))
         {
             unlink($facility->facilty_image);
         }

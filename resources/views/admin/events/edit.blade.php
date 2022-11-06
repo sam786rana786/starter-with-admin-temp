@@ -56,9 +56,9 @@
                                 <div class="row mb-3">
                                     <label for="profile_image" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage"
+                                        <embed id="showImage"
                                             src="{{ !empty($event->cover_image) ? url($event->cover_image) : url('backend/images/small/img-2.jpg') }}"
-                                            alt="Image Profile" class="rounded avatar-lg">
+                                            class="rounded avatar-lg" />
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-rounded waves-effect waves-light">

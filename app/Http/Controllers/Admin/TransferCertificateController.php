@@ -48,7 +48,7 @@ class TransferCertificateController extends Controller
         if ($request->file('pdf'))
         {
             $file = $request->file('pdf');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/tc'), $filename);
             $imageName = 'backend/uploads/tc/' . $filename;
             $validatedData['pdf'] = $imageName;
@@ -101,10 +101,10 @@ class TransferCertificateController extends Controller
         {
 
             $file = $request->file('pdf');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/tc'), $filename);
             $imageName = 'backend/uploads/tc/' . $filename;
-            if($transferCertificate->pdf)
+            if(file_exists(public_path($transferCertificate->pdf)) )
             {
                 unlink($transferCertificate->pdf);
             }
@@ -130,7 +130,7 @@ class TransferCertificateController extends Controller
     public function destroy($id)
     {
         $transferCertificate = TransferCertificate::findOrFail($id);
-        if($transferCertificate->pdf)
+        if(file_exists(public_path($transferCertificate->pdf)) )
         {
             unlink($transferCertificate->pdf);
         }

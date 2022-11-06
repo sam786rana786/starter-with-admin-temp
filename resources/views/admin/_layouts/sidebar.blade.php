@@ -38,6 +38,8 @@
                         <li><a href="{{ route('album.index') }}">Gallery Section</a></li>
                         <li><a href="{{ route('vandm.index') }}">Vision & Mission Section</a></li>
                         <li><a href="{{ route('footer.index') }}">Footer Section</a></li>
+                        <li><a href="{{ route('link.index') }}">UseFul Links</a></li>
+                        <li><a href="{{ route('topbar.index') }}">Topbar</a></li>
                     </ul>
                 </li>
 
@@ -48,9 +50,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('notice.index') }}">List Notice</a></li>
-                        <li><a href="{{ route('notice.create') }}">Create Notices</a></li>
                         <li><a href="{{ route('events.index') }}">List Events</a></li>
-                        <li><a href="{{ route('events.create') }}">Create Events</a></li>
+                        <li><a href="{{ route('latest_notice.index') }}">Latest Notices</a></li>
                     </ul>
                 </li>
 
@@ -88,8 +89,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('uniform.index') }}">Fee Structure</a></li>
                         <li><a href="{{ route('online.admission') }}">Online Admission List</a></li>
-                        {{-- <li><a href="#">Admission Notification</a></li>
-                        <li><a href="#">Rules and Regulations</a></li> --}}
+                        <li><a href="{{ route('notifications.index') }}">Admission Notification</a></li>
+                        <li><a href="{{ route('rulesregulations.index') }}">Rules and Regulations</a></li>
                     </ul>
                 </li>
                 <li>
@@ -98,7 +99,7 @@
                         <span>Academics</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{  route('notice.index')  }}">Student Daily Notice</a></li>
+                        <li><a href="{{ route('notice.index') }}">Student Daily Notice</a></li>
                         {{-- <li><a href="pages-timeline.html">Syllabus (Upload as PDF)</a></li>
                         <li><a href="pages-directory.html">Study Materials</a></li>
                         <li><a href="pages-invoice.html">Result</a></li> --}}
@@ -137,6 +138,18 @@
                     <a href="{{ route('alumni.list') }}" class="waves-effect">
                         <i class="ri-profile-line"></i>
                         <span>Alumni</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('contacts.index') }}" class="waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Contacts List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('result.index') }}" class="waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Results List</span>
                     </a>
                 </li>
             </ul>

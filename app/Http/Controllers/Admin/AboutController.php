@@ -53,7 +53,7 @@ class AboutController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
             Image::make($image)->resize(1920, 800)->save('backend/uploads/about/'.$name_gen);
             $save_url = 'backend/uploads/about/'.$name_gen;
-            if($about->about_image)
+            if(file_exists(public_path($about->about_image)))
             {
                 unlink($about->about_image);
             }

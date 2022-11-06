@@ -12,6 +12,6 @@ class Alumni extends Model
     protected $fillable = [
         'name', 'student_id', 'email', 'class', 'section', 'year_passing', 'gender',
         'status', 'landline', 'mobile', 'location', 'organization', 'qualification',
-        'specialization', 'institute', 'is_approved'
+        'specialization', 'institute', 'is_approved', 'photo'
     ];
 }

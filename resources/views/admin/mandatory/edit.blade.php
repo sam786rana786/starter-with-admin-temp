@@ -479,7 +479,8 @@
                                                                 for="progress-principal_no-namecard-input">Principal</label>
                                                             <input type="number" class="form-control"
                                                                 id="progress-principal_no-namecard-input"
-                                                                name="principal_no" value="{{ $mandatory->principal_no }}">
+                                                                name="principal_no"
+                                                                value="{{ $mandatory->principal_no }}">
                                                         </div>
                                                     </div>
 
@@ -487,7 +488,8 @@
                                                         <div class="mb-3">
                                                             <label class="form-label"
                                                                 for="progress-prt_no-namecard-input">PGT</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->prt_no }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->prt_no }}"
                                                                 id="progress-prt_no-namecard-input" name="prt_no">
                                                         </div>
                                                     </div>
@@ -497,7 +499,8 @@
                                                         <div class="mb-3">
                                                             <label class="form-label"
                                                                 for="progress-tgt-namecard-input">TGT</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->tgt }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->tgt }}"
                                                                 id="progress-tgt-namecard-input" name="tgt">
                                                         </div>
                                                     </div>
@@ -506,7 +509,8 @@
                                                         <div class="mb-3">
                                                             <label class="form-label"
                                                                 for="progress-prt-namecard-input">PRT</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->prt }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->prt }}"
                                                                 id="progress-prt-namecard-input" name="prt">
                                                         </div>
                                                     </div>
@@ -517,7 +521,8 @@
                                                             <label class="form-label"
                                                                 for="progress-ratio-namecard-input">Teacher Section
                                                                 Ratio</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->ratio }}"
+                                                            <input type="text" class="form-control"
+                                                                value="{{ $mandatory->ratio }}"
                                                                 id="progress-ratio-namecard-input" name="ratio">
                                                         </div>
                                                     </div>
@@ -527,7 +532,8 @@
                                                             <label class="form-label"
                                                                 for="progress-special_educator-namecard-input">Details Of
                                                                 Special Educator</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->special_educator }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->special_educator }}"
                                                                 id="progress-special_educator-namecard-input"
                                                                 name="special_educator">
                                                         </div>
@@ -539,7 +545,8 @@
                                                             <label class="form-label"
                                                                 for="progress-counsellor-namecard-input">Details Of
                                                                 Counsellor & Wellness Teacher</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->counsellor }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->counsellor }}"
                                                                 id="progress-counsellor-namecard-input" name="counsellor">
                                                         </div>
                                                     </div>
@@ -554,7 +561,8 @@
                                                             <label class="form-label"
                                                                 for="progress-campus_area-namecard-input">Campus
                                                                 Area</label>
-                                                            <input type="text" class="form-control" value="{{ $mandatory->campus_area }}"
+                                                            <input type="text" class="form-control"
+                                                                value="{{ $mandatory->campus_area }}"
                                                                 id="progress-campus_area-namecard-input"
                                                                 name="campus_area">
                                                         </div>
@@ -565,7 +573,8 @@
                                                             <label class="form-label"
                                                                 for="progress-class_room-namecard-input">Class Room
                                                                 Dimensions</label>
-                                                            <input type="text" class="form-control" value="{{ $mandatory->class_room }}"
+                                                            <input type="text" class="form-control"
+                                                                value="{{ $mandatory->class_room }}"
                                                                 id="progress-class_room-namecard-input" name="class_room">
                                                         </div>
                                                     </div>
@@ -576,7 +585,8 @@
                                                             <label class="form-label"
                                                                 for="progress-lab-namecard-input">Lab Dimensions
                                                                 Area</label>
-                                                            <input type="text" class="form-control" value="{{ $mandatory->lab }}"
+                                                            <input type="text" class="form-control"
+                                                                value="{{ $mandatory->lab }}"
                                                                 id="progress-lab-namecard-input" name="lab">
                                                         </div>
                                                     </div>
@@ -585,8 +595,12 @@
                                                         <div class="mb-3">
                                                             <label>Internet Facility</label>
                                                             <select class="form-select" name="internet">
-                                                                <option value="Yes"{{ $mandatory->internet == 'Yes' ? 'selected' : '' }}>Yes</option>
-                                                                <option value="No"{{ $mandatory->internet == 'No' ? 'selected' : '' }}>No</option>
+                                                                <option
+                                                                    value="Yes"{{ $mandatory->internet == 'Yes' ? 'selected' : '' }}>
+                                                                    Yes</option>
+                                                                <option
+                                                                    value="No"{{ $mandatory->internet == 'No' ? 'selected' : '' }}>
+                                                                    No</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -597,7 +611,8 @@
                                                             <label class="form-label"
                                                                 for="progress-girl_toilet-namecard-input">No. Of Girls
                                                                 Toilet</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->girl_toilet }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->girl_toilet }}"
                                                                 id="progress-girl_toilet-namecard-input"
                                                                 name="girl_toilet">
                                                         </div>
@@ -608,7 +623,8 @@
                                                             <label class="form-label"
                                                                 for="progress-boy_toilet-namecard-input">No. Of Boys
                                                                 Toilet</label>
-                                                            <input type="number" class="form-control" value="{{ $mandatory->boy_toilet }}"
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $mandatory->boy_toilet }}"
                                                                 id="progress-boy_toilet-namecard-input" name="boy_toilet">
                                                         </div>
                                                     </div>
@@ -619,7 +635,8 @@
                                                             <label class="form-label"
                                                                 for="progress-youtube_link-namecard-input">YouTube
                                                                 Link</label>
-                                                            <input type="url" class="form-control" value="{{ $mandatory->youtube_link }}"
+                                                            <input type="url" class="form-control"
+                                                                value="{{ $mandatory->youtube_link }}"
                                                                 id="progress-youtube_link-namecard-input"
                                                                 name="youtube_link">
                                                         </div>
@@ -639,8 +656,8 @@
                                                             <h5>Confirm Detail</h5>
                                                             <p class="text-muted">Please Check If all The details are
                                                                 right!</p>
-                                                                <p>If Everything is Fine Then Press Submit</p>
-                                                                <button class="btn btn-success" type="submit">Submit</button>
+                                                            <p>If Everything is Fine Then Press Submit</p>
+                                                            <button class="btn btn-success" type="submit">Submit</button>
                                                         </div>
                                                     </div>
                                                 </div>

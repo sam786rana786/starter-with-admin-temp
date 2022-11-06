@@ -54,7 +54,7 @@ class ImportantImagesController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$header_image->getClientOriginalExtension();
             Image::make($header_image)->resize(1920, 141)->save('backend/uploads/importantImages/'.$name_gen);
             $h_url = 'backend/uploads/importantImages/'.$name_gen;
-            if($importantImages->header_image){unlink($importantImages->header_image);}
+            if(file_exists(public_path($importantImages->header_image))){unlink($importantImages->header_image);}
             $importantImages->header_image = $h_url;
         }
 
@@ -67,7 +67,7 @@ class ImportantImagesController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$mandatory_image->getClientOriginalExtension();
             Image::make($mandatory_image)->resize(1920, 800)->save('backend/uploads/importantImages/'.$name_gen);
             $m_url = 'backend/uploads/importantImages/'.$name_gen;
-            if($importantImages->mandatory_image){unlink($importantImages->mandatory_image);}
+            if(file_exists(public_path($importantImages->mandatory_image))){unlink($importantImages->mandatory_image);}
             $importantImages->mandatory_image = $m_url;
         }
 

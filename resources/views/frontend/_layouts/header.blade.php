@@ -3,9 +3,12 @@
         <div class="row">
             <div class="col-xs-10 col-sm-10">
                 <ul class="left-info">
-                    <li><a href="#"><i class="fa-solid fa-clock"></i> Opening Time : 9:00am-5:00pm</a></li>
-                    <li><a href="#"><i class="fa-solid fa-phone"></i> Phone : 778 838 5713</a></li>
-                    <li><a href="#"><i class="fa-solid fa-house"></i> Address : Warisaliganj (Nawada)-805130</a>
+                    @php
+                        $topbar = \App\Models\TopBar::findOrFail(1);
+                    @endphp
+                    <li><a href="#"><i class="fa-solid fa-clock"></i> Opening Time : {{ $topbar->opening }}</a></li>
+                    <li><a href="#"><i class="fa-solid fa-phone"></i> Phone : {{ $topbar->phone }}</a></li>
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Address : {{ $topbar->address }}</a>
                     </li>
                 </ul>
             </div>
@@ -63,9 +66,14 @@
                 <li class="nav-item">
                     <a href="{{ route('admission') }}" class="nav-link">Admission</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('info_link') }}" class="nav-link">Info Link</a>
-                </li>
+                @php
+                    $result = \App\Models\Admin\Result::where('is_active', 1)->first();
+                @endphp
+                @if (!$result == null)
+                    <li class="nav-item">
+                        <a href="{{ route('info_link') }}" class="nav-link">Results</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('gallery') }}" class="nav-link">Gallery</a>
                 </li>

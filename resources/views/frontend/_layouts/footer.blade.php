@@ -12,10 +12,13 @@
                     <div class="col-sm-12 col-md-5 pl-lg-5">
                         <h4 class="text-center hh4">Useful Links</h4>
                         <ul class="navbar-nav">
-                            <li class="text-center nav-item"><a href=""> Mandatory Disclosure</a></li>
-                            <li class="text-center nav-item"><a href=""> Mandatory Disclosure</a></li>
-                            <li class="text-center nav-item"><a href=""> Mandatory Disclosure</a></li>
-                            <li class="text-center nav-item"><a href=""> Mandatory Disclosure</a></li>
+                            @php
+                                $usefulLinks = \App\Models\UsefulLink::all();
+                            @endphp
+                            @foreach ($usefulLinks as $u)
+                                <li class="text-center nav-item"><a href="{{ $u->url }}"> {{ $u->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-sm-12 col-md-3">
@@ -93,13 +96,12 @@
                 <div>© <span id="year">2022</span> &nbsp;Vivekanand Public School Warisaliganj. All Rights
                     Reserved.
                 </div>
-                <div class="d-flex align-items-md-center">Total Visitors :
-                    <h6 class="vcount mb-0">
-                        <div id="visitorcounter"></div>
-                    </h6>
+                @php
+                    $footerCount = App\Models\Footer::findOrFail(1)->increment('views');
+                @endphp
+                <div class="d-flex align-items-md-center">Total Visitors : {{ $footer->views }}
                 </div>
                 <div>Designed &amp; Developed by: Akshiptika Infotech &amp; Private Limited</div>
             </div>
         </div>
     </footer>
-    

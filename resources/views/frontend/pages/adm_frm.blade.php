@@ -246,7 +246,7 @@
                     <label class="col-sm-1 col-form-label">Mobile No<span class="text-danger">*</span></label>
                     <div class="col-sm-5">
                         <input type="tel" placeholder="Mobile Number" name="comn_mobno" class="form-control"
-                        required="true">
+                            required="true">
                     </div>
 
                     <label class="col-sm-1 col-form-label">Email ID<span class="text-danger">*</span></label>
@@ -399,8 +399,8 @@
 
                     <label class="col-sm-1 col-form-label"label>Mobile No<span class="text-danger">*</span></label>
                     <div class="col-sm-5">
-                        <input type="tel" placeholder="Mother Mobile number" name="m_mobile"
-                            class="form-control" required="true">
+                        <input type="tel" placeholder="Mother Mobile number" name="m_mobile" class="form-control"
+                            required="true">
                     </div>
 
                     <label class="col-sm-1 col-form-label">Email ID</label>
@@ -486,20 +486,6 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-1 col-form-label"label>School Code<span class="text-danger">*</span></label>
-                    <div class="col-sm-5">
-                        <input type="number" placeholder="Current School Code" name="cur_schcode" class="form-control"
-                            required="true">
-                    </div>
-
-                    <label class="col-sm-1 col-form-label">Board Roll No<span class="text-danger">*</span></label>
-                    <div class="col-sm-5">
-                        <input type="number" placeholder="Board Roll No." name="cur_brdroll" class="form-control"
-                            required="true">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
                     <label class="col-sm-1 col-form-label"label>Board Name<span class="text-danger">*</span></label>
                     <div class="col-sm-5">
                         <input type="text" placeholder="Board Name" name="cur_brdname"
@@ -544,7 +530,7 @@
                     <label class="col-sm-4 col-form-label">Class X Pre-Board Marksheet/Board Mark
                         Sheet/Achievements<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input id="file" type="file" name="docum" class="form-control" required="true">
+                        <input type="file" name="docum" class="form-control" required="true" value="abc">
                     </div>
                 </div>
                 <div class="row mb-3">

@@ -46,7 +46,7 @@ class AchivementController extends Controller
         if ($request->file('photo'))
         {
             $file = $request->file('photo');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/achievements'), $filename);
             $imageName = 'backend/uploads/achievements/' . $filename;
             $validatedData['photo'] = $imageName;
@@ -96,10 +96,10 @@ class AchivementController extends Controller
         if ($request->file('photo'))
         {
             $file = $request->file('photo');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/achievements'), $filename);
             $imageName = 'backend/uploads/achievements/' . $filename;
-            if ($achievement->photo){
+            if (file_exists(public_path($achievement->photo))){
                 unlink($achievement->photo);
             }
             $validatedData['photo'] = $imageName;
@@ -121,7 +121,7 @@ class AchivementController extends Controller
      */
     public function destroy(Achivement $achievement)
     {
-        if($achievement->photo)
+        if(file_exists(public_path($achievement->photo)))
         {
             unlink($achievement->photo);
         }

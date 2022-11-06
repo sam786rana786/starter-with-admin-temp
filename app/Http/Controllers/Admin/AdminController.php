@@ -49,10 +49,10 @@ class AdminController extends Controller
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('backend/uploads/admin_images'), $filename);
             $imageName = 'backend/uploads/admin_images/' . $filename;
-            if ($data['profile_image']) {
+            if (file_exists(public_path($data['profile_image']))) {
                 unlink($data['profile_image']);
             }
             $data['profile_image'] = $imageName;

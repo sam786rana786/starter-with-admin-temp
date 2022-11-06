@@ -39,6 +39,10 @@ class FooterController extends Controller
             $name_gen = hexdec(uniqid()). '.' .$image->getClientOriginalExtension();
             Image::make($image)->resize(200, 39)->save('backend/uploads/logo/'.$name_gen);
             $save_url = 'backend/uploads/logo/'.$name_gen;
+            if(file_exists(public_path($footer->logo)))
+            {
+                unlink($footer->logo);
+            }
             $footer['logo'] = $save_url;
         }
         $footer->save();

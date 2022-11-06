@@ -668,3 +668,51 @@ footer .top-footer h4 {
     font-size: 36px;
     color: #fff;
 }
+
+/* // Contact Us Page Styles Newly added */
+.bg-theme {
+    background: #939393 !important;
+}
+
+.card-contact {
+    margin-left: -130px;
+}
+
+.card-contact h1 {
+    color: #fff;
+    font-size: 30px;
+    position: relative;
+    margin-bottom: 40px;
+}
+.card-contact h1:before {
+    content: "";
+    height: 3px;
+    width: 80px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -10px;
+}
+
+.icon-part {
+    height: 40px;
+    width: 40px;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.btn-submit {
+    padding: 8px 25px !important;
+    background-color: #939393 !important;
+    color: #fff;
+    border-radius: 20px !important;
+}
+
+.anchor {
+    text-decoration: none;
+    color: #fff;
+}
