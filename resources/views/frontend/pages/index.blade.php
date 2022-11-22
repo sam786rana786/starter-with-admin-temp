@@ -24,7 +24,8 @@
                     @endphp
                     <marquee direction="left" loop="true" onmouseover="this.stop();" onmouseout="this.start();">
                         <h4>
-                            <a href="{{ route('latest_notice.show', $latestNotice->id) }}" class="text-white">{{ $latestNotice->title }}</a>
+                            <a href="{{ route('latest_notice.show', $latestNotice->id) }}"
+                                class="text-white">{{ $latestNotice->title }}</a>
                         </h4>
                     </marquee>
                 </div>
@@ -166,10 +167,11 @@
                 <div class="col-sm-6">
                     <h2>Upcoming Events</h2>
                     @php
-                        $events = App\Models\Event::whereMonth('event_date', Carbon\Carbon::now()->month)->get();
+                        $events = App\Models\Event::whereMonth('event_date', Carbon\Carbon::now()->month)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
                     @endphp
-                    <marquee behavior="scroll" direction="down" onmouseover="stop()" onmouseout="start()"
-                        height="570px">
+                    <marquee behavior="scroll" direction="down" onmouseover="stop()" onmouseout="start()" height="570px">
                         @foreach ($events as $event)
                             <div class="card mb-3 mt-3">
                                 <div class="row g-0">
@@ -228,8 +230,10 @@
     <div id="myModal" class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1"
         data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
-            <img src="{{ asset('frontend/assets/img/top_achievers.jpg') }}" alt="Achievers"
-                style="width: 150%;margin-left: -25%;">
+            @php
+                $modalImage = App\Models\Modal::findOrFail(1);
+            @endphp
+            <img src="{{ asset($modalImage->image) }}" alt="Achievers" style="width: 150%;margin-left: -25%;">
         </div>
     </div>
 @endsection

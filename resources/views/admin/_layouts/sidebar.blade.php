@@ -40,6 +40,7 @@
                         <li><a href="{{ route('footer.index') }}">Footer Section</a></li>
                         <li><a href="{{ route('link.index') }}">UseFul Links</a></li>
                         <li><a href="{{ route('topbar.index') }}">Topbar</a></li>
+                        <li><a href="{{ route('modal.edit', 1) }}">Modal</a></li>
                     </ul>
                 </li>
 

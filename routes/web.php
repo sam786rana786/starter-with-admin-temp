@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ImportantImagesController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\TransferCertificateController;
 use App\Http\Controllers\LatestNoticeController;
+use App\Http\Controllers\ModalController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RulesRegulationController;
 use App\Http\Controllers\TopBarController;
@@ -168,6 +169,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('notifications', NotificationController::class)->except('create', 'store', 'destroy', 'show');
         Route::resource('rulesregulations', RulesRegulationController::class)->except('create', 'store', 'destroy', 'show');
         Route::resource('latest_notice', LatestNoticeController::class)->except('create', 'store', 'destroy', 'show');
+        Route::get('modal-edit/{id}', [ModalController::class, 'edit'])->name('modal.edit');
+        Route::put('modal-edit/{id}', [ModalController::class, 'update'])->name('modal.update');
     });
 });
 
